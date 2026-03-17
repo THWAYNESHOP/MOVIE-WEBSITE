@@ -284,19 +284,21 @@ ayanaCards.forEach(ayanaCard => {
                         </div>
                     `;
                     
-                    const video = playerContainer.querySelector('.episode-video');
-                    video.play();
+                    const newVideo = playerContainer.querySelector('.episode-video');
+                    if (newVideo) {
+                        newVideo.play();
+                    }
                     
                     // Add fullscreen functionality
                     const fullscreenBtn = playerContainer.querySelector('.fullscreen-btn');
                     if (fullscreenBtn) {
                         fullscreenBtn.addEventListener('click', () => {
-                            if (video.requestFullscreen) {
-                                video.requestFullscreen();
-                            } else if (video.webkitRequestFullscreen) {
-                                video.webkitRequestFullscreen();
-                            } else if (video.msRequestFullscreen) {
-                                video.msRequestFullscreen();
+                            if (newVideo.requestFullscreen) {
+                                newVideo.requestFullscreen();
+                            } else if (newVideo.webkitRequestFullscreen) {
+                                newVideo.webkitRequestFullscreen();
+                            } else if (newVideo.msRequestFullscreen) {
+                                newVideo.msRequestFullscreen();
                             }
                         });
                     }
@@ -306,10 +308,10 @@ ayanaCards.forEach(ayanaCard => {
                     if (speedBtn) {
                         speedBtn.addEventListener('click', () => {
                             const speeds = [0.5, 0.75, 1, 1.25, 1.5, 2];
-                            const currentSpeed = video.playbackRate;
+                            const currentSpeed = newVideo.playbackRate;
                             const currentIndex = speeds.indexOf(currentSpeed);
                             const nextIndex = (currentIndex + 1) % speeds.length;
-                            video.playbackRate = speeds[nextIndex];
+                            newVideo.playbackRate = speeds[nextIndex];
                             speedBtn.textContent = `⚡ ${speeds[nextIndex]}x`;
                         });
                     }
@@ -320,8 +322,10 @@ ayanaCards.forEach(ayanaCard => {
                         backBtn.addEventListener('click', () => {
                             videoPlayer.style.display = 'none';
                             episodesPanel.style.display = 'block';
-                            video.pause();
-                            video.currentTime = 0;
+                            if (newVideo) {
+                                newVideo.pause();
+                                newVideo.currentTime = 0;
+                            }
                         });
                     }
                 }, 1000);
