@@ -192,6 +192,23 @@ ayanaCards.forEach(ayanaCard => {
                 episodesPanel.style.display = 'block';
             }
         });
+        
+        // Add direct click on poster image to play video
+        const posterImg = cardWrapper.querySelector('img');
+        if (posterImg) {
+            posterImg.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                // Find the first YouTube video button and click it
+                const firstYouTubeBtn = Array.from(episodeBtns).find(btn => 
+                    btn.getAttribute('data-video').includes('youtu.be')
+                );
+                
+                if (firstYouTubeBtn) {
+                    firstYouTubeBtn.click();
+                }
+            });
+        }
     }
 
     // episode button click to play video
