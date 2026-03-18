@@ -494,6 +494,7 @@ http://22fdd620.kazaktelekom.com/iptv/8KSD5KFDXA6H88/31614/index.m3u8`;
         
         // Show episodes panel
         sportsEpisodesPanel.parentElement.style.display = 'block';
+        sportsEpisodesPanel.parentElement.parentElement.querySelector('.movie-card img').style.display = 'none';
     });
 }
 
