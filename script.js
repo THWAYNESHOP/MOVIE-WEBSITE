@@ -367,3 +367,38 @@ ayanaCards.forEach(ayanaCard => {
         });
     }
 });
+
+// Search functionality
+const searchInput = document.getElementById('searchInput');
+const allMovieCards = document.querySelectorAll('.movie-card');
+
+searchInput.addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    
+    allMovieCards.forEach(card => {
+        const title = card.querySelector('.title');
+        const img = card.querySelector('img');
+        
+        if (title && img) {
+            const movieTitle = title.textContent.toLowerCase();
+            const movieAlt = img.alt.toLowerCase();
+            
+            if (movieTitle.includes(searchTerm) || movieAlt.includes(searchTerm)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = searchTerm === '' ? 'block' : 'none';
+            }
+        }
+    });
+});
+
+// Add enter key support for search
+searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        const firstVisibleCard = document.querySelector('.movie-card:not([style*="display: none"])');
+        if (firstVisibleCard) {
+            firstVisibleCard.click();
+        }
+    }
+});
