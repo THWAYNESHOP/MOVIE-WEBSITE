@@ -6,46 +6,11 @@ if (sportsCard) {
         const sportsVideoPlayer = document.querySelector('.video-player');
         
         // M3U Playlist data
-        const m3uPlaylist = `#EXTM3U url-tvg="http://epg.one/epg.xml; http://gabbarit.drm-play.com/epg_lite.xml.gz; http://epg.cdntv.online/lite.xml; http://epg.it999.ru/epg.xml.gz; http://iptv-content.rv77.pw/guide-lite.xml"
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/NEXO.png" group-title="NEXO",NEXO
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-http://rafail1982.uz/nexo2.mp4
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/NexoIPTV.png" group-title="NEXO",NexoIPTV
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-http://rafail1982.uz/NexoIPTV.mp4
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/Setanta Sports 1 HD.png" group-title="Спортивные",Setanta VIDEO
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-https://setantasports.com/wp-content/uploads/2025/08/VIDEO-FOR-SITE_1.mp4
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/Setanta Sports 1 HD.png" group-title="Спортивные",Setanta Sports 1 HD
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-https://vod.splay.uz/live_splay/original/Setanta1HD/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/Setanta Sports 2 HD.png" group-title="Спортивные",Setanta Sports 2 HD
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-https://vod.splay.uz/live_splay/original/Setanta2HD/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/Setanta Sports 1 HD.png" group-title="Спортивные",Setanta Sports 1 HD
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-http://s8.rafail1982.uz/1263/tracks-v1a1a1/mono.m3u8
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/Setanta Sports 2 HD.png" group-title="Спортивные",Setanta Sports 2 HD
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-http://s8.rafail1982.uz/1264/tracks-v1a1a1/mono.m3u8
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/sport2.png" group-title="Спортивные",СЕТАНТА+ UA
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-http://141.95.55.143/CH7609/index.m3u8
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/Megogo Футбол 1 HD.png" group-title="Спортивные",Megogo Футбол 1 HD
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-http://22fdd620.kazaktelekom.com/iptv/8KSD5KFDXA6H88/31483/index.m3u8
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/Megogo Футбол 2 HD.png" group-title="Спортивные",Megogo Футбол 2 HD
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-http://22fdd620.kazaktelekom.com/iptv/8KSD5KFDXA6H88/31505/index.m3u8
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/Megogo Футбол 3 HD.png" group-title="Спортивные",Megogo Футбол 3 HD
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-http://22fdd620.kazaktelekom.com/iptv/8KSD5KFDXA6H88/31504/index.m3u8
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/Megogo Футбол 4 HD.png" group-title="Спортивные",Megogo Футбол 4 HD
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-http://22fdd620.kazaktelekom.com/iptv/8KSD5KFDXA6H88/31613/index.m3u8
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/Megogo Футбол 5 HD.png" group-title="Спортивные",Megogo Футбол 5 HD
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-http://22fdd620.kazaktelekom.com/iptv/8KSD5KFDXA6H88/31614/index.m3u8`;
+        const m3uPlaylist = `#EXTM3U
+#EXTINF:-1 ,Setanta Qazaqstan
+https://bkm.beetv.kz/btv/live/hls/000002649.m3u8
+#EXTINF:-1 ,Setanta Qazaqstan HD KZ
+https://bkm.beetv.kz/btv/live/hls/000004619.m3u8`;
 
         // Parse M3U and create channel buttons
         const channels = parseM3U(m3uPlaylist);
@@ -81,13 +46,13 @@ function parseM3U(m3uData) {
     
     for (const line of lines) {
         if (line.startsWith('#EXTINF:')) {
-            const info = line.split(',');
-            const nameMatch = line.match(/group-title="([^"]*)"/);
-            const logoMatch = line.match(/tvg-logo="([^"]*)"/);
+            // Extract channel name from simplified format
+            const parts = line.split(',');
+            const channelName = parts[parts.length - 1].trim();
             
             currentChannel = {
-                name: nameMatch ? nameMatch[1] : 'Unknown',
-                logo: logoMatch ? logoMatch[1] : '',
+                name: channelName || 'Unknown',
+                logo: 'sports.jpg', // Default logo
                 url: ''
             };
         } else if (line.startsWith('http') && currentChannel) {
