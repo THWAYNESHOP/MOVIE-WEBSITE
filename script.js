@@ -383,10 +383,13 @@ searchInput.addEventListener('input', (e) => {
             const movieTitle = title.textContent.toLowerCase();
             const movieAlt = img.alt.toLowerCase();
             
-            if (movieTitle.includes(searchTerm) || movieAlt.includes(searchTerm)) {
+            // Only hide cards if there's an actual search term
+            if (searchTerm === '') {
+                card.style.display = 'block';
+            } else if (movieTitle.includes(searchTerm) || movieAlt.includes(searchTerm)) {
                 card.style.display = 'block';
             } else {
-                card.style.display = searchTerm === '' ? 'block' : 'none';
+                card.style.display = 'none';
             }
         }
     });
