@@ -232,16 +232,18 @@ ayanaCards.forEach(ayanaCard => {
             `;
             
             // Check if it's a YouTube URL
-            if (src.includes('youtube.com/watch?v=') || src.includes('youtu.be/')) {
-                // Convert YouTube URL to embed URL
+            if (src.includes('youtube.com/embed/') || src.includes('youtu.be/') || src.includes('youtube.com/watch?v=')) {
+                // Extract video ID from different YouTube URL formats
                 let videoId = '';
-                if (src.includes('youtube.com/watch?v=')) {
-                    videoId = src.split('v=')[1].split('&')[0];
+                if (src.includes('youtube.com/embed/')) {
+                    videoId = src.split('youtube.com/embed/')[1].split('?')[0];
                 } else if (src.includes('youtu.be/')) {
                     videoId = src.split('youtu.be/')[1].split('?')[0];
+                } else if (src.includes('youtube.com/watch?v=')) {
+                    videoId = src.split('v=')[1].split('&')[0];
                 }
                 
-                const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+                const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
                 
                 // Show loading state
                 const playerContainer = ayanaCard.querySelector('.video-player');
