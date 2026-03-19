@@ -172,7 +172,7 @@ sections.forEach(id => {
 });
 
 // toggle for all ayana cards: img <-> episodes <-> video player (Netflix style)
-const ayanaCards = document.querySelectorAll('.movie-card');
+const ayanaCards = document.querySelectorAll('.movie-card:has(.episodes-panel)');
 ayanaCards.forEach(ayanaCard => {
     const cardWrapper = ayanaCard.querySelector('.card-wrapper');
     const episodesPanel = ayanaCard.querySelector('.episodes-panel');
