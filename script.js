@@ -233,6 +233,127 @@ ayanaCards.forEach(ayanaCard => {
                 let videoId = '';
                 if (src.includes('youtube.com/watch?v=')) {
                     videoId = src.split('v=')[1].split('&')[0];
+                } else if (src.includes('youtu.be/')) {
+                    videoId = src.split('youtu.be/')[1].split('?')[0];
+                }
+                
+                const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+                
+                // Show loading state
+                const playerContainer = ayanaCard.querySelector('.video-player');
+                playerContainer.innerHTML = `
+                    <div class="loading-spinner">
+                        <div class="spinner"></div>
+                        <p>Loading video...</p>
+                    </div>
+                    <button class="back-btn">← Back</button>
+                `;
+                
+                // Create iframe for YouTube video
+                setTimeout(() => {
+                    playerContainer.innerHTML = `
+                        <div class="video-wrapper">
+                            <iframe class="video-iframe" 
+                                    src="${embedUrl}" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <button class="back-btn">← Back</button>
+                        <div class="video-controls">
+                            <button class="fullscreen-btn">⛶ Fullscreen</button>
+                        </div>
+                    `;
+                    
+                    // Add fullscreen functionality
+                    const fullscreenBtn = playerContainer.querySelector('.fullscreen-btn');
+                    if (fullscreenBtn) {
+                        fullscreenBtn.addEventListener('click', () => {
+                            const iframe = playerContainer.querySelector('.video-iframe');
+                            if (iframe.requestFullscreen) {
+                                iframe.requestFullscreen();
+                            } else if (iframe.webkitRequestFullscreen) {
+                                iframe.webkitRequestFullscreen();
+                            } else if (iframe.msRequestFullscreen) {
+                                iframe.msRequestFullscreen();
+                            }
+                        });
+                    }
+                    
+                    // Re-attach back button event
+                    const backBtn = playerContainer.querySelector('.back-btn');
+                    if (backBtn) {
+                        backBtn.addEventListener('click', () => {
+                            videoPlayer.style.display = 'none';
+                            episodesPanel.style.display = 'block';
+                            if (newVideo) {
+                                newVideo.pause();
+                                newVideo.currentTime = 0;
+                            }
+                        });
+                    }
+                }, 1000);
+            } else {
+                // Handle local video files
+                const newVideo = document.createElement('video');
+                newVideo.className = 'episode-video';
+                newVideo.poster = ayanaCard.querySelector('.card-wrapper img').src;
+                newVideo.controls = true;
+                newVideo.preload = 'auto';
+                newVideo.src = src;
+                
+                // Show loading state
+                const playerContainer = ayanaCard.querySelector('.video-player');
+                playerContainer.innerHTML = `
+                    <div class="loading-spinner">
+                        <div class="spinner"></div>
+                        <p>Loading video...</p>
+                    </div>
+                    <button class="back-btn">← Back</button>
+                `;
+                
+                setTimeout(() => {
+                    playerContainer.innerHTML = '';
+                    playerContainer.appendChild(newVideo);
+                    playerContainer.innerHTML += `
+                        <button class="back-btn">← Back</button>
+                        <div class="video-controls">
+                            <button class="speed-btn">⚡ 1x</button>
+                            <button class="fullscreen-btn">⛶ Fullscreen</button>
+                        </div>
+                    `;
+                    
+                    newVideo.play();
+                    
+                    // Add speed control
+                    const speedBtn = playerContainer.querySelector('.speed-btn');
+                    if (speedBtn) {
+                        const speeds = [1, 1.25, 1.5, 2];
+                        let currentSpeed = 1;
+                        
+                        speedBtn.addEventListener('click', () => {
+                            const currentIndex = speeds.indexOf(currentSpeed);
+                            const nextIndex = (currentIndex + 1) % speeds.length;
+                            newVideo.playbackRate = speeds[nextIndex];
+                            speedBtn.textContent = `⚡ ${speeds[nextIndex]}x`;
+                        });
+                    }
+                    
+                    // Add fullscreen functionality
+                    const fullscreenBtn = playerContainer.querySelector('.fullscreen-btn');
+                    if (fullscreenBtn) {
+                        fullscreenBtn.addEventListener('click', () => {
+                            if (newVideo.requestFullscreen) {
+                                newVideo.requestFullscreen();
+                            } else if (newVideo.webkitRequestFullscreen) {
+                                newVideo.webkitRequestFullscreen();
+                            } else if (newVideo.msRequestFullscreen) {
+                                newVideo.msRequestFullscreen();
+                            }
+                        });
+                    }
+                    
                     // Re-attach back button event
                     const backBtn = playerContainer.querySelector('.back-btn');
                     if (backBtn) {
