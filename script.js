@@ -444,6 +444,29 @@ searchInput.addEventListener('keypress', (e) => {
     }
 });
 
+// Lulu 18th March 24-hour auto-hide functionality
+const lulu18thMarch = {
+    videoId: 'A_r5r6ru6MY',
+    title: 'Lulu 18th March',
+    addedTime: new Date().getTime(),
+    duration: 24 * 60 * 60 * 1000 // 24 hours in milliseconds
+};
+
+// Check if Lulu 18th March should be hidden
+function checkLulu18thMarch() {
+    const currentTime = new Date().getTime();
+    if (currentTime - lulu18thMarch.addedTime > lulu18thMarch.duration) {
+        // Hide the Lulu 18th March button
+        const lulu18thMarchBtn = document.querySelector('[data-video*="A_r5r6ru6MY"]');
+        if (lulu18thMarchBtn) {
+            lulu18thMarchBtn.style.display = 'none';
+        }
+    }
+}
+
+// Run check every minute
+setInterval(checkLulu18thMarch, 60000); // Check every 60 seconds
+
 // Sports M3U Playlist functionality
 const sportsCard = document.querySelector('.movie-card img[alt="Sports"]');
 if (sportsCard) {
