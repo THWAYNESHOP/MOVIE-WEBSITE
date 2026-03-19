@@ -205,7 +205,7 @@ ayanaCards.forEach(ayanaCard => {
                 
                 // Find the first YouTube video button and click it
                 const firstYouTubeBtn = Array.from(episodeBtns).find(btn => 
-                    btn.getAttribute('data-video').includes('youtu.be')
+                    btn.getAttribute('data-video').includes('youtube.com/embed')
                 );
                 
                 if (firstYouTubeBtn) {
@@ -218,8 +218,12 @@ ayanaCards.forEach(ayanaCard => {
     // episode button click to play video
     episodeBtns.forEach(btn => {
         btn.addEventListener('click', () => {
+            console.log('Episode button clicked:', btn.getAttribute('data-video'));
             const src = btn.getAttribute('data-video');
             const video = ayanaCard.querySelector('.episode-video');
+            
+            console.log('Video element found:', !!video);
+            console.log('Is YouTube URL:', src.includes('youtube.com/embed') || src.includes('youtu.be/') || src.includes('youtube.com/watch?v='));
             
             // Show loading state
             const playerContainer = ayanaCard.querySelector('.video-player');
