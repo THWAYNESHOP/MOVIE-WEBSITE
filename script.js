@@ -172,7 +172,9 @@ sections.forEach(id => {
 });
 
 // toggle for all ayana cards: img <-> episodes <-> video player (Netflix style)
-const ayanaCards = document.querySelectorAll('.movie-card:has(.episodes-panel)');
+console.log('Initializing Ayana/Lulu cards...');
+const ayanaCards = document.querySelectorAll('.movie-card');
+console.log('Found movie cards:', ayanaCards.length);
 ayanaCards.forEach(ayanaCard => {
     const cardWrapper = ayanaCard.querySelector('.card-wrapper');
     const episodesPanel = ayanaCard.querySelector('.episodes-panel');
@@ -181,6 +183,8 @@ ayanaCards.forEach(ayanaCard => {
     const backBtn = ayanaCard.querySelector('.back-btn');
     const episodesBackBtn = ayanaCard.querySelector('.episodes-back-btn');
     const video = ayanaCard.querySelector('.episode-video');
+
+    console.log('Card found - episodesPanel:', !!episodesPanel, 'episodeBtns:', episodeBtns.length);
 
     if (!episodesPanel) return; // skip if not a card with episodes
 
@@ -466,136 +470,3 @@ function checkLulu18thMarch() {
 
 // Run check every minute
 setInterval(checkLulu18thMarch, 60000); // Check every 60 seconds
-
-// Sports M3U Playlist functionality
-const sportsCard = document.querySelector('.movie-card img[alt="Sports"]');
-if (sportsCard) {
-    sportsCard.addEventListener('click', () => {
-        const sportsEpisodesPanel = document.querySelector('.channels-list');
-        const sportsVideoPlayer = document.querySelector('.video-player');
-        
-        // M3U Playlist data
-        const m3uPlaylist = `#EXTM3U url-tvg="http://epg.one/epg.xml; http://gabbarit.drm-play.com/epg_lite.xml.gz; http://epg.cdntv.online/lite.xml; http://epg.it999.ru/epg.xml.gz; http://iptv-content.rv77.pw/guide-lite.xml"
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/NEXO.png" group-title="NEXO",NEXO
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-http://rafail1982.uz/nexo2.mp4
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/NexoIPTV.png" group-title="NEXO",NexoIPTV
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-http://rafail1982.uz/NexoIPTV.mp4
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/Setanta Sports 1 HD.png" group-title="Спортивные",Setanta VIDEO
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-https://setantasports.com/wp-content/uploads/2025/08/VIDEO-FOR-SITE_1.mp4
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/Setanta Sports 1 HD.png" group-title="Спортивные",Setanta Sports 1 HD
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-https://vod.splay.uz/live_splay/original/Setanta1HD/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/Setanta Sports 2 HD.png" group-title="Спортивные",Setanta Sports 2 HD
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-https://vod.splay.uz/live_splay/original/Setanta2HD/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/Setanta Sports 1 HD.png" group-title="Спортивные",Setanta Sports 1 HD
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-http://s8.rafail1982.uz/1263/tracks-v1a1a1/mono.m3u8
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/Setanta Sports 2 HD.png" group-title="Спортивные",Setanta Sports 2 HD
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-http://s8.rafail1982.uz/1264/tracks-v1a1a1/mono.m3u8
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/sport2.png" group-title="Спортивные",СЕТАНТА+ UA
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-http://141.95.55.143/CH7609/index.m3u8
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/Megogo Футбол 1 HD.png" group-title="Спортивные",Megogo Футбол 1 HD
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-http://22fdd620.kazaktelekom.com/iptv/8KSD5KFDXA6H88/31483/index.m3u8
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/Megogo Футбол 2 HD.png" group-title="Спортивные",Megogo Футбол 2 HD
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-http://22fdd620.kazaktelekom.com/iptv/8KSD5KFDXA6H88/31505/index.m3u8
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/Megogo Футбол 3 HD.png" group-title="Спортивные",Megogo Футбол 3 HD
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-http://22fdd620.kazaktelekom.com/iptv/8KSD5KFDXA6H88/31504/index.m3u8
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/Megogo Футбол 4 HD.png" group-title="Спортивные",Megogo Футбол 4 HD
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-http://22fdd620.kazaktelekom.com/iptv/8KSD5KFDXA6H88/31613/index.m3u8
-#EXTINF:-1 tvg-logo="http://rafail1982.uz/logo/Megogo Футбол 5 HD.png" group-title="Спортивные",Megogo Футбол 5 HD
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0
-http://22fdd620.kazaktelekom.com/iptv/8KSD5KFDXA6H88/31614/index.m3u8`;
-
-        // Parse M3U and create channel buttons
-        const channels = parseM3U(m3uPlaylist);
-        
-        // Display channels
-        sportsEpisodesPanel.innerHTML = channels.map(channel => `
-            <button class="channel-btn" data-url="${channel.url}">
-                <img src="${channel.logo}" alt="${channel.name}" class="channel-logo">
-                <span class="channel-name">${channel.name}</span>
-            </button>
-        `).join('');
-        
-        // Add click handlers for channels
-        const channelBtns = sportsEpisodesPanel.querySelectorAll('.channel-btn');
-        channelBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const url = btn.getAttribute('data-url');
-                playSportsStream(url, sportsVideoPlayer);
-            });
-        });
-        
-        // Show episodes panel
-        sportsEpisodesPanel.parentElement.style.display = 'block';
-        sportsEpisodesPanel.parentElement.parentElement.querySelector('.movie-card img').style.display = 'none';
-    });
-}
-
-// Parse M3U playlist
-function parseM3U(m3uData) {
-    const lines = m3uData.split('\n');
-    const channels = [];
-    let currentChannel = null;
-    
-    for (const line of lines) {
-        if (line.startsWith('#EXTINF:')) {
-            const info = line.split(',');
-            const nameMatch = line.match(/group-title="([^"]*)"/);
-            const logoMatch = line.match(/tvg-logo="([^"]*)"/);
-            
-            currentChannel = {
-                name: nameMatch ? nameMatch[1] : 'Unknown',
-                logo: logoMatch ? logoMatch[1] : '',
-                url: ''
-            };
-        } else if (line.startsWith('http') && currentChannel) {
-            currentChannel.url = line.trim();
-            channels.push(currentChannel);
-            currentChannel = null;
-        }
-    }
-    
-    return channels;
-}
-
-// Play sports stream
-function playSportsStream(url, playerContainer) {
-    playerContainer.innerHTML = `
-        <div class="loading-spinner">
-            <div class="spinner"></div>
-            <p>Loading sports stream...</p>
-                        video.requestFullscreen();
-                    } else if (video.webkitRequestFullscreen) {
-                        video.webkitRequestFullscreen();
-                    } else if (video.msRequestFullscreen) {
-                        video.msRequestFullscreen();
-                    }
-                });
-            }
-        }
-        
-        // Add back button functionality
-        const backBtn = playerContainer.querySelector('.back-btn');
-        if (backBtn) {
-            backBtn.addEventListener('click', () => {
-                playerContainer.style.display = 'none';
-                playerContainer.previousElementSibling.style.display = 'block';
-                if (video) {
-                    video.pause();
-                    video.currentTime = 0;
-                }
-            });
-        }
-    }, 1000);
-}
