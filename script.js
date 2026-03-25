@@ -218,7 +218,7 @@ ayanaCards.forEach(ayanaCard => {
     // episode button click to play video
     episodeBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            console.log('Episode button clicked:', btn.getAttribute('data-video'));
+            console.log('Episode button clicked:', btn.getAttribute('data-video'), btn.getAttribute('data-telegram'));
             
             // Check if it's a Telegram widget button
             if (btn.getAttribute('data-telegram') === 'true') {
@@ -237,11 +237,26 @@ ayanaCards.forEach(ayanaCard => {
                 // Load Telegram widget
                 setTimeout(() => {
                     playerContainer.innerHTML = `
-                        <div class="telegram-widget-container">
-                            <script async src="https://telegram.org/js/telegram-widget.js?23" data-telegram-post="AYANACITIZENTVDAILYUPDATES/321" data-width="100%"></script>
+                        <div class="telegram-widget-container" id="telegram-widget-${Date.now()}">
+                            <div class="loading-spinner">
+                                <div class="spinner"></div>
+                                <p>Loading Telegram content...</p>
+                            </div>
                         </div>
                         <button class="back-btn">← Back</button>
                     `;
+                    
+                    // Create and append the Telegram widget script dynamically
+                    const telegramContainer = playerContainer.querySelector('.telegram-widget-container');
+                    const script = document.createElement('script');
+                    script.async = true;
+                    script.src = 'https://telegram.org/js/telegram-widget.js?23';
+                    script.setAttribute('data-telegram-post', 'AYANACITIZENTVDAILYUPDATES/321');
+                    script.setAttribute('data-width', '100%');
+                    
+                    // Clear loading and add the script
+                    telegramContainer.innerHTML = '';
+                    telegramContainer.appendChild(script);
                     
                     // Re-attach back button event
                     const backBtn = playerContainer.querySelector('.back-btn');
@@ -256,13 +271,16 @@ ayanaCards.forEach(ayanaCard => {
                 // Hide episodes panel and show video player
                 episodesPanel.style.display = 'none';
                 videoPlayer.style.display = 'block';
+                console.log('Telegram widget loaded, showing video player');
                 return;
             }
             
             const src = btn.getAttribute('data-video');
+            console.log('Loading video:', src);
             const video = ayanaCard.querySelector('.episode-video');
             
             console.log('Video element found:', !!video);
+            console.log('Video player container:', !!ayanaCard.querySelector('.video-player'));
             console.log('Is YouTube URL:', src.includes('youtube.com/embed') || src.includes('youtu.be/') || src.includes('youtube.com/watch?v='));
             
             // Show loading state
