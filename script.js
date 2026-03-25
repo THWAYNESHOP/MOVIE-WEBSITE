@@ -222,41 +222,51 @@ ayanaCards.forEach(ayanaCard => {
             
             // Check if it's a Telegram widget button
             if (btn.getAttribute('data-telegram') === 'true') {
-                console.log('Loading Telegram widget...');
+                console.log('Loading Telegram video content...');
                 
                 // Show loading state
                 const playerContainer = ayanaCard.querySelector('.video-player');
                 playerContainer.innerHTML = `
                     <div class="loading-spinner">
                         <div class="spinner"></div>
-                        <p>Loading Telegram updates...</p>
+                        <p>Loading Telegram video...</p>
                     </div>
                     <button class="back-btn">← Back</button>
                 `;
                 
-                // Load Telegram widget
+                // Load Telegram video content directly
                 setTimeout(() => {
+                    // Create a video player that will display Telegram content
                     playerContainer.innerHTML = `
-                        <div class="telegram-widget-container" id="telegram-widget-${Date.now()}">
-                            <div class="loading-spinner">
-                                <div class="spinner"></div>
-                                <p>Loading Telegram content...</p>
-                            </div>
+                        <div class="video-wrapper">
+                            <iframe 
+                                src="https://t.me/AYANACITIZENTVDAILYUPDATES/321?embed=1&mode=tve" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen
+                                style="width: 100%; height: 500px; border-radius: 8px;">
+                            </iframe>
                         </div>
                         <button class="back-btn">← Back</button>
+                        <div class="video-controls">
+                            <button class="fullscreen-btn">⛶ Fullscreen</button>
+                        </div>
                     `;
                     
-                    // Create and append the Telegram widget script dynamically
-                    const telegramContainer = playerContainer.querySelector('.telegram-widget-container');
-                    const script = document.createElement('script');
-                    script.async = true;
-                    script.src = 'https://telegram.org/js/telegram-widget.js?23';
-                    script.setAttribute('data-telegram-post', 'AYANACITIZENTVDAILYUPDATES/321');
-                    script.setAttribute('data-width', '100%');
-                    
-                    // Clear loading and add the script
-                    telegramContainer.innerHTML = '';
-                    telegramContainer.appendChild(script);
+                    // Add fullscreen functionality
+                    const fullscreenBtn = playerContainer.querySelector('.fullscreen-btn');
+                    if (fullscreenBtn) {
+                        fullscreenBtn.addEventListener('click', () => {
+                            const iframe = playerContainer.querySelector('iframe');
+                            if (iframe.requestFullscreen) {
+                                iframe.requestFullscreen();
+                            } else if (iframe.webkitRequestFullscreen) {
+                                iframe.webkitRequestFullscreen();
+                            } else if (iframe.msRequestFullscreen) {
+                                iframe.msRequestFullscreen();
+                            }
+                        });
+                    }
                     
                     // Re-attach back button event
                     const backBtn = playerContainer.querySelector('.back-btn');
@@ -271,7 +281,7 @@ ayanaCards.forEach(ayanaCard => {
                 // Hide episodes panel and show video player
                 episodesPanel.style.display = 'none';
                 videoPlayer.style.display = 'block';
-                console.log('Telegram widget loaded, showing video player');
+                console.log('Telegram video loaded, showing video player');
                 return;
             }
             
