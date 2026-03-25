@@ -219,6 +219,46 @@ ayanaCards.forEach(ayanaCard => {
     episodeBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             console.log('Episode button clicked:', btn.getAttribute('data-video'));
+            
+            // Check if it's a Telegram widget button
+            if (btn.getAttribute('data-telegram') === 'true') {
+                console.log('Loading Telegram widget...');
+                
+                // Show loading state
+                const playerContainer = ayanaCard.querySelector('.video-player');
+                playerContainer.innerHTML = `
+                    <div class="loading-spinner">
+                        <div class="spinner"></div>
+                        <p>Loading Telegram updates...</p>
+                    </div>
+                    <button class="back-btn">← Back</button>
+                `;
+                
+                // Load Telegram widget
+                setTimeout(() => {
+                    playerContainer.innerHTML = `
+                        <div class="telegram-widget-container">
+                            <script async src="https://telegram.org/js/telegram-widget.js?23" data-telegram-post="AYANACITIZENTVDAILYUPDATES/321" data-width="100%"></script>
+                        </div>
+                        <button class="back-btn">← Back</button>
+                    `;
+                    
+                    // Re-attach back button event
+                    const backBtn = playerContainer.querySelector('.back-btn');
+                    if (backBtn) {
+                        backBtn.addEventListener('click', () => {
+                            videoPlayer.style.display = 'none';
+                            episodesPanel.style.display = 'block';
+                        });
+                    }
+                }, 1000);
+                
+                // Hide episodes panel and show video player
+                episodesPanel.style.display = 'none';
+                videoPlayer.style.display = 'block';
+                return;
+            }
+            
             const src = btn.getAttribute('data-video');
             const video = ayanaCard.querySelector('.episode-video');
             

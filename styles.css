@@ -976,3 +976,20 @@ main {
     color: #999;
     word-break: break-all;
 }
+
+/* Telegram Widget Container */
+.telegram-widget-container {
+    width: 100%;
+    min-height: 400px;
+    background: #1a1a1a;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.telegram-widget-container iframe {
+    width: 100% !important;
+    border-radius: 8px;
+}
