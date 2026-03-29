@@ -633,17 +633,24 @@ function processSTKPayment() {
 function simulateSTKPush(requestData) {
     console.log('STK Push Request:', requestData);
     
-    // Simulate API delay
-    setTimeout(() => {
-        // Simulate successful response (replace with actual API response handling)
-        const mockResponse = {
-            ResponseCode: '0',
-            ResponseDescription: 'Success. Request accepted for processing',
-            MerchantRequestID: '12345-67890-12345',
-            CheckoutRequestID: 'ws_CO_' + Date.now()
-        };
+    // Send real STK Push request to your backend
+    fetch('http://localhost:3000/api/stkpush', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            amount: requestData.Amount,
+            phoneNumber: requestData.PhoneNumber,
+            accountReference: requestData.AccountReference,
+            transactionDesc: requestData.TransactionDesc
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('STK Push Response:', data);
         
-        if (mockResponse.ResponseCode === '0') {
+        if (data.success) {
             showPaymentStatus('✅ STK Push sent successfully! Please check your phone and enter your PIN.', 'success');
             
             // Auto-close modal after 5 seconds
@@ -652,10 +659,15 @@ function simulateSTKPush(requestData) {
                 resetPaymentForm();
             }, 5000);
         } else {
-            showPaymentStatus('❌ Payment failed: ' + mockResponse.ResponseDescription, 'error');
+            showPaymentStatus('❌ Payment failed: ' + (data.message || 'Unknown error'), 'error');
             submitPayment.disabled = false;
         }
-    }, 3000);
+    })
+    .catch(error => {
+        console.error('STK Push Error:', error);
+        showPaymentStatus('❌ Network error: Please check your connection and try again.', 'error');
+        submitPayment.disabled = false;
+    });
 }
 
 function generateSecurityCredential(request, consumerKey) {
