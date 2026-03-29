@@ -544,3 +544,152 @@ function checkLulu18thMarch() {
 
 // Run check every minute
 setInterval(checkLulu18thMarch, 60000); // Check every 60 seconds
+
+// STK Push Payment functionality
+const stkPayBtn = document.getElementById('stkPayBtn');
+const paymentModal = document.getElementById('paymentModal');
+const paymentClose = document.getElementById('paymentClose');
+const submitPayment = document.getElementById('submitPayment');
+const paymentStatus = document.getElementById('paymentStatus');
+
+// Your STK Push consumer key
+const CONSUMER_KEY = 'cwAwAnuu8MCAiaIsGi7qC4zxK98LZdd2nKZScMVvq0L0PaqW';
+
+// Open payment modal
+if (stkPayBtn) {
+    stkPayBtn.addEventListener('click', () => {
+        paymentModal.style.display = 'flex';
+    });
+}
+
+// Close payment modal
+if (paymentClose) {
+    paymentClose.addEventListener('click', () => {
+        paymentModal.style.display = 'none';
+        resetPaymentForm();
+    });
+}
+
+// Close modal when clicking outside
+paymentModal.addEventListener('click', (e) => {
+    if (e.target === paymentModal) {
+        paymentModal.style.display = 'none';
+        resetPaymentForm();
+    }
+});
+
+// Submit payment
+if (submitPayment) {
+    submitPayment.addEventListener('click', processSTKPayment);
+}
+
+function processSTKPayment() {
+    const amount = document.getElementById('paymentAmount').value;
+    const phoneNumber = document.getElementById('phoneNumber').value;
+    const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+    
+    // Validation
+    if (!amount || amount < 1) {
+        showPaymentStatus('Please enter a valid amount (minimum KES 1)', 'error');
+        return;
+    }
+    
+    if (!phoneNumber || !phoneNumber.match(/^254[0-9]{9}$/)) {
+        showPaymentStatus('Please enter a valid phone number (254XXXXXXXXX)', 'error');
+        return;
+    }
+    
+    // Show processing status
+    showPaymentStatus('Processing payment...', 'processing');
+    submitPayment.disabled = true;
+    
+    // Prepare STK Push request
+    const stkRequest = {
+        BusinessShortCode: '174379',
+        Password: 'bfb279c956564e3556d0518e0ad987c6563',
+        Timestamp: getCurrentTimestamp(),
+        TransactionType: 'CustomerPayBillOnline',
+        Amount: amount,
+        PartyA: phoneNumber,
+        PhoneNumber: phoneNumber,
+        CallBackURL: 'https://your-callback-url.com/callback',
+        AccountReference: 'PATRICKCINEMATV',
+        TransactionDesc: 'Payment for Premium Content'
+    };
+    
+    // Generate security credential
+    const securityCredential = generateSecurityCredential(stkRequest, CONSUMER_KEY);
+    
+    // Prepare the final request
+    const requestData = {
+        ...stkRequest,
+        SecurityCredential: securityCredential
+    };
+    
+    // Simulate STK Push API call (replace with actual API endpoint)
+    simulateSTKPush(requestData);
+}
+
+function simulateSTKPush(requestData) {
+    console.log('STK Push Request:', requestData);
+    
+    // Simulate API delay
+    setTimeout(() => {
+        // Simulate successful response (replace with actual API response handling)
+        const mockResponse = {
+            ResponseCode: '0',
+            ResponseDescription: 'Success. Request accepted for processing',
+            MerchantRequestID: '12345-67890-12345',
+            CheckoutRequestID: 'ws_CO_' + Date.now()
+        };
+        
+        if (mockResponse.ResponseCode === '0') {
+            showPaymentStatus('✅ STK Push sent successfully! Please check your phone and enter your PIN.', 'success');
+            
+            // Auto-close modal after 5 seconds
+            setTimeout(() => {
+                paymentModal.style.display = 'none';
+                resetPaymentForm();
+            }, 5000);
+        } else {
+            showPaymentStatus('❌ Payment failed: ' + mockResponse.ResponseDescription, 'error');
+            submitPayment.disabled = false;
+        }
+    }, 3000);
+}
+
+function generateSecurityCredential(request, consumerKey) {
+    // This is a simplified version - in production, use proper encryption
+    const concatenatedString = request.BusinessShortCode + request.Password + request.Timestamp + request.TransactionType + 
+                          request.Amount + request.PartyA + request.PhoneNumber + request.CallBackURL + 
+                          request.AccountReference + request.TransactionDesc;
+    
+    // In production, this should be properly encrypted using the consumer key
+    return btoa(concatenatedString + consumerKey);
+}
+
+function getCurrentTimestamp() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hour = String(now.getHours()).padStart(2, '0');
+    const minute = String(now.getMinutes()).padStart(2, '0');
+    const second = String(now.getSeconds()).padStart(2, '0');
+    
+    return year + month + day + hour + minute + second;
+}
+
+function showPaymentStatus(message, type) {
+    paymentStatus.textContent = message;
+    paymentStatus.className = `payment-status ${type}`;
+    paymentStatus.style.display = 'block';
+}
+
+function resetPaymentForm() {
+    document.getElementById('paymentAmount').value = '100';
+    document.getElementById('phoneNumber').value = '';
+    document.querySelector('input[name="paymentMethod"][value="mpesa"]').checked = true;
+    paymentStatus.style.display = 'none';
+    submitPayment.disabled = false;
+}
