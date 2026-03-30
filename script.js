@@ -633,8 +633,8 @@ function processSTKPayment() {
 function simulateSTKPush(requestData) {
     console.log('STK Push Request:', requestData);
     
-    // Send real STK Push request to your backend
-    fetch('http://localhost:3000/api/stkpush', {
+    // Send real STK Push request to PHP backend
+    fetch('stkpush.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

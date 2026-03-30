@@ -48,52 +48,6 @@
     </div>
     </header>
 
-    <!-- STK Push Payment Modal -->
-    <div class="payment-modal" id="paymentModal" style="display: none;">
-        <div class="payment-content">
-            <div class="payment-header">
-                <h3>🔐 Secure Payment</h3>
-                <button class="payment-close" id="paymentClose">×</button>
-            </div>
-            <div class="payment-body">
-                <div class="payment-info">
-                    <h4>Enter Amount</h4>
-                    <input type="number" id="paymentAmount" placeholder="Enter amount (KES)" min="1" value="100">
-                    <small>Minimum amount: KES 1</small>
-                </div>
-                <div class="payment-info">
-                    <h4>Phone Number</h4>
-                    <input type="tel" id="phoneNumber" placeholder="254XXXXXXXXX" pattern="254[0-9]{9}" maxlength="12">
-                    <small>Format: 254XXXXXXXXX</small>
-                </div>
-                <div class="payment-method">
-                    <h4>Payment Method</h4>
-                    <div class="payment-options">
-                        <label class="payment-option">
-                            <input type="radio" name="paymentMethod" value="mpesa" checked>
-                            <span>M-PESA</span>
-                        </label>
-                        <label class="payment-option">
-                            <input type="radio" name="paymentMethod" value="airtel">
-                            <span>Airtel Money</span>
-                        </label>
-                        <label class="payment-option">
-                            <input type="radio" name="paymentMethod" value="tkash">
-                            <span>T-Kash</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="payment-footer">
-                <button class="payment-submit" id="submitPayment">
-                    <span class="payment-icon">💳</span>
-                    Pay with STK Push
-                </button>
-                <div class="payment-status" id="paymentStatus"></div>
-            </div>
-        </div>
-    </div>
-
     <!-- sidebar -->
     <aside class="sidebar">
         <ul>
