@@ -121,11 +121,81 @@ chatSend.addEventListener('click', () => {
 const playBtns = document.querySelectorAll('.hero-carousel .play-btn');
 playBtns.forEach(btn => {
     btn.addEventListener('click', () => {
+        const slide = btn.closest('.slide');
+        const videoSrc = slide ? slide.getAttribute('data-video') : null;
+        
         requireSubscription(() => {
+            if (videoSrc && videoSrc.includes('vimeo.com')) {
+                // Extract Vimeo ID and show player
+                const match = videoSrc.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+                const vimeoId = match ? match[1] : null;
+                if (vimeoId) {
+                    showVimeoModal(vimeoId);
+                    return;
+                }
+            }
+            // Default: redirect to video.html
             window.location.href = 'video.html';
         });
     });
 });
+
+// Create and show Vimeo modal player for hero carousel
+function showVimeoModal(vimeoId) {
+    // Create modal if it doesn't exist
+    let modal = document.getElementById('vimeo-player-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'vimeo-player-modal';
+        modal.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        `;
+        document.body.appendChild(modal);
+    }
+    
+    const embedUrl = `https://player.vimeo.com/video/${vimeoId}?autoplay=1&title=0&byline=0&portrait=0`;
+    modal.innerHTML = `
+        <div style="width: 90%; height: 90%; position: relative;">
+            <button style="
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background: rgba(255,255,255,0.8);
+                border: none;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                font-size: 24px;
+                cursor: pointer;
+                z-index: 10001;
+            " onclick="document.getElementById('vimeo-player-modal').style.display='none'">×</button>
+            <iframe 
+                src="${embedUrl}" 
+                style="width: 100%; height: 100%; border: none; border-radius: 8px;"
+                frameborder="0" 
+                allow="autoplay; fullscreen; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    `;
+    modal.style.display = 'flex';
+    
+    // Close on background click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+}
 
 document.querySelector('.carousel-next').addEventListener('click', () => {
     goToSlide(currentSlide + 1);
@@ -369,6 +439,59 @@ ayanaCards.forEach(ayanaCard => {
                                 newVideo.pause();
                                 newVideo.currentTime = 0;
                             }
+                        });
+                    }
+                }, 1000);
+            } else if (src.includes('vimeo.com')) {
+                // Extract Vimeo ID from common URL patterns
+                const match = src.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+                const vimeoId = match ? match[1] : null;
+                const embedUrl = vimeoId ? `https://player.vimeo.com/video/${vimeoId}?autoplay=1&title=0&byline=0&portrait=0` : src;
+
+                const playerContainer = ayanaCard.querySelector('.video-player');
+                playerContainer.innerHTML = `
+                    <div class="loading-spinner">
+                        <div class="spinner"></div>
+                        <p>Loading Vimeo video...</p>
+                    </div>
+                    <button class="back-btn">← Back</button>
+                `;
+
+                setTimeout(() => {
+                    playerContainer.innerHTML = `
+                        <div class="video-wrapper">
+                            <iframe class="video-iframe" 
+                                    src="${embedUrl}" 
+                                    frameborder="0" 
+                                    allow="autoplay; fullscreen; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <button class="back-btn">← Back</button>
+                        <div class="video-controls">
+                            <button class="fullscreen-btn">⛶ Fullscreen</button>
+                        </div>
+                    `;
+
+                    const fullscreenBtn = playerContainer.querySelector('.fullscreen-btn');
+                    if (fullscreenBtn) {
+                        fullscreenBtn.addEventListener('click', () => {
+                            const iframe = playerContainer.querySelector('.video-iframe');
+                            if (iframe.requestFullscreen) {
+                                iframe.requestFullscreen();
+                            } else if (iframe.webkitRequestFullscreen) {
+                                iframe.webkitRequestFullscreen();
+                            } else if (iframe.msRequestFullscreen) {
+                                iframe.msRequestFullscreen();
+                            }
+                        });
+                    }
+
+                    const backBtn = playerContainer.querySelector('.back-btn');
+                    if (backBtn) {
+                        backBtn.addEventListener('click', () => {
+                            videoPlayer.style.display = 'none';
+                            episodesPanel.style.display = 'block';
                         });
                     }
                 }, 1000);
