@@ -36,7 +36,8 @@ const movieDatabase = {
             { id: 2, title: 'Full Movie: Ayana', video: 'https://www.youtube.com/embed/V89rkxV6Y-4?autoplay=1', type: 'youtube' },
             { id: 3, title: 'Episode 1: Ayana Friday 6th Part 1', video: 'ayana_friday_6th_part_1.mp4', type: 'local' },
             { id: 4, title: 'Episode 2: Ayana Friday 6th Part 2', video: 'ayana_friday_6th_part_2.mp4', type: 'local' },
-            { id: 5, title: 'Ayana Monday 13th Part 1', video: 'https://www.youtube.com/embed/N4xlQNO_mCc?autoplay=1', type: 'youtube' }
+            { id: 5, title: 'Ayana Monday 13th Part 1', video: 'https://www.youtube.com/embed/N4xlQNO_mCc?autoplay=1', type: 'youtube' },
+            { id: 6, title: 'Ayana Monday 6th April Part 2', video: 'https://www.youtube.com/embed/NCwze6gQUdI?autoplay=1', type: 'youtube' }
         ]
     },
     qutu: {
