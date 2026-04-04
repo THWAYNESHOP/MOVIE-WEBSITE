@@ -166,20 +166,6 @@ const movieDatabase = {
         episodes: [
             { id: 1, title: 'Episode 1', video: 'https://www.youtube.com/embed/placeholder?autoplay=1', type: 'youtube' }
         ]
-    },
-    shuga: {
-        id: 'shuga',
-        title: 'Shuga',
-        poster: 'shuga.jpg',
-        banner: 'shuga.jpg',
-        year: '2024',
-        rating: '8.8/10',
-        source: 'MTV Base',
-        description: 'Shuga is a groundbreaking youth drama series that tackles real-life issues faced by young people in Africa, including relationships, sexuality, HIV/AIDS, and social pressures.',
-        trailerUrl: 'https://www.youtube.com/embed/placeholder?autoplay=1',
-        episodes: [
-            { id: 1, title: 'Shuga Season 1 Episode 1', video: 'https://www.youtube.com/embed/suapN_w1BA0', type: 'youtube' }
-        ]
     }
     // Add more movies as needed
 };
