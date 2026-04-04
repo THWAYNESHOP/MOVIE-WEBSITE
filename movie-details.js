@@ -18,7 +18,8 @@ const movieDatabase = {
             { id: 5, title: 'Lulu Wednesday 1st April', video: 'https://vimeo.com/1179847512?autoplay=1', type: 'vimeo' },
             { id: 6, title: 'Lulu 2nd April Thursday', video: 'https://www.youtube.com/embed/3JX06dEkfA0?autoplay=1', type: 'youtube' },
             { id: 7, title: 'Episode 1: Lulu Thursday', video: 'LULU THUR.mp4', type: 'local' },
-            { id: 8, title: 'Telegram Updates: AYANA CITIZEN TV', video: 'https://t.me/AYANACITIZENTVDAILYUPDATES/321?embed=1&mode=tve', type: 'telegram' }
+            { id: 8, title: 'Telegram Updates: AYANA CITIZEN TV', video: 'https://t.me/AYANACITIZENTVDAILYUPDATES/321?embed=1&mode=tve', type: 'telegram' },
+            { id: 9, title: 'Lulu Friday 3rd April Full Episode', video: 'https://www.youtube.com/embed/mCfZZP47_lI?autoplay=1', type: 'youtube' }
         ]
     },
     ayana: {
