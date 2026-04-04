@@ -51,7 +51,7 @@ const movieDatabase = {
         description: 'Qutu is an engaging drama providing viewers with thrilling moments and captivating plot developments.',
         trailerUrl: 'https://www.youtube.com/embed/UhtUujOfCl8?autoplay=1',
         episodes: [
-            { id: 1, title: 'Qutu - Full Episode', video: 'https://www.youtube.com/embed/UhtUujOfCl8?autoplay=1', type: 'youtube' }
+            { id: 1, title: 'Qutu Tuesday', video: 'https://www.youtube.com/embed/Mg3KGotVius', type: 'youtube' }
         ]
     },
     lazizi: {
