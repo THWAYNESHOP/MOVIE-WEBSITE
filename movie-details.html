@@ -1,0 +1,143 @@
+<!-- Movie Details Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details - Patrick Cinema TV</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+    <header>
+        <div class="left">
+            <div class="logo">Patrick Cinema TV</div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#categories">Categories</a></li>
+                    <li><a href="index.html#trending">Trending</a></li>
+                    <li><a href="index.html#my-list">My List</a></li>
+                    <li><a href="index.html#account">Account</a></li>
+                    <li><a href="index.html#help">Help</a></li>
+                </ul>
+            </nav>
+            <div class="search">
+                <input type="text" id="searchInput" placeholder="Search movies...">
+            </div>
+        </div>
+        <div class="right">
+            <div class="user-avatar">U</div>
+            <button class="pay" id="stkPayBtn">Pay</button>
+            <button class="upgrade">Upgrade</button>
+            <button class="help-btn">Help</button>
+        </div>
+    </header>
+
+    <!-- chatbot modal -->
+    <div class="chatbot" id="chatbot">
+        <div class="chat-header">
+            <span>Help Chat</span>
+            <button id="chat-close">×</button>
+        </div>
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="chat-input">
+            <input type="text" id="chat-input-field" placeholder="Type a question...">
+            <button id="chat-send">Send</button>
+        </div>
+    </div>
+    </header>
+
+    <!-- sidebar -->
+    <aside class="sidebar">
+        <ul>
+            <li><span class="icon">🏠</span><span class="label">Home</span></li>
+            <li><span class="icon">🎬</span><span class="label">Browse</span></li>
+            <li><span class="icon">🔍</span><span class="label">Search</span></li>
+            <li><span class="icon">⭐</span><span class="label">My List</span></li>
+            <li><span class="icon">⚙️</span><span class="label">Settings</span></li>
+        </ul>
+    </aside>
+
+    <!-- main content -->
+    <main class="details-page">
+        <!-- Back button -->
+        <div class="details-header">
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+
+        <!-- Movie Hero Section -->
+        <section class="details-hero">
+            <div class="hero-background" id="heroBg"></div>
+            <div class="hero-content">
+                <div class="poster-section">
+                    <img id="poster" src="" alt="Movie Poster" class="poster-image">
+                </div>
+                <div class="details-info">
+                    <h1 id="title"></h1>
+                    <div class="meta-info">
+                        <span class="year" id="year"></span>
+                        <span class="rating" id="rating"></span>
+                        <span class="source" id="source"></span>
+                    </div>
+                    <p id="description" class="description"></p>
+                    <div class="action-buttons">
+                        <button class="play-btn" id="watchTrailerBtn">🎬 Watch Trailer</button>
+                        <button class="add-list-btn">➕ Add to My List</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Episodes Grid -->
+        <section class="episodes-section">
+            <h2>Episodes</h2>
+            <div class="episodes-grid" id="episodesGrid">
+                <!-- Episodes will be dynamically loaded here -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Trailer Modal -->
+    <div class="trailer-modal" id="trailerModal" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" id="trailerClose">×</button>
+            <div class="trailer-container" id="trailerContainer"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="brand">Patrick Cinema TV</div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Company</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Press</a>
+                </div>
+                <div class="link-group">
+                    <h4>Support</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Contact Us</a>
+                    <a href="#">FAQ</a>
+                </div>
+                <div class="link-group">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+            <div class="social">
+                <a href="#">Facebook</a> | 
+                <a href="#">Twitter</a> | 
+                <a href="#">Instagram</a>
+            </div>
+            <p>&copy; 2026 Patrick Cinema TV. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="movie-details.js"></script>
+</body>
+</html>

@@ -452,6 +452,50 @@
             </div>
         </section>
 
+        <!-- TMDB Trending Section (NEW) -->
+        <section class="content-row" id="tmdb-trending">
+            <div class="row-header">
+                <h3>TMDB Trending</h3>
+                <div class="tmdb-top-controls">
+                    <div class="tmdb-search-wrapper">
+                        <input id="tmdb-search-input" type="text" placeholder="Search TMDB by title..." aria-label="Search TMDB movies">
+                        <button id="tmdb-search-btn" type="button">Search</button>
+                    </div>
+                    <a href="#" class="view-more" id="tmdb-refresh">Refresh</a>
+                </div>
+            </div>
+            <div id="tmdb-trending-grid" class="tmdb-grid">
+                <p>Loading trending movies from TMDB...</p>
+            </div>
+        </section>
+
+        <!-- TMDB My List Section (NEW) -->
+        <section class="content-row" id="tmdb-my-list">
+            <div class="row-header">
+                <h3>My List</h3>
+                <button type="button" id="tmdb-clear-list" class="view-more">Clear List</button>
+            </div>
+            <div id="tmdb-my-list-grid" class="tmdb-grid">
+                <p>Add movies to your My List by clicking the favorite button on any card.</p>
+            </div>
+        </section>
+
+        <!-- TMDB Movie Modal (NEW) -->
+        <div id="tmdbModal" class="tmdb-modal hidden">
+            <div class="tmdb-modal-content">
+                <button id="tmdbModalClose" class="tmdb-modal-close">×</button>
+                <div class="tmdb-modal-body">
+                    <img id="tmdbModalPoster" class="tmdb-modal-poster" alt="Movie Poster">
+                    <div class="tmdb-modal-info">
+                        <h2 id="tmdbModalTitle"></h2>
+                        <p id="tmdbModalOverview"></p>
+                        <p><strong>Rating:</strong> <span id="tmdbModalRating"></span></p>
+                        <div id="tmdbTrailerContainer" class="tmdb-trailer-container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <section class="content-row" id="skoolflix">
             <div class="row-header">
                 <h3>Skoolflix</h3>

@@ -879,6 +879,174 @@ main {
     color: #999;
 }
 
+/* TMDB Trending section styles (NEW) */
+.tmdb-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.tmdb-card {
+    background: #151515;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.tmdb-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.35);
+}
+
+.tmdb-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.tmdb-card-info {
+    padding: 0.7rem 0.75rem 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tmdb-card-info h4 {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tmdb-card-info span {
+    font-size: 0.8rem;
+    color: #f7b500;
+    font-weight: bold;
+}
+
+.tmdb-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.84);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    z-index: 100000;
+}
+
+.tmdb-modal.hidden {
+    display: none;
+}
+
+.tmdb-modal-content {
+    width: min(960px, 100%);
+    max-height: 92vh;
+    background: #111;
+    border-radius: 10px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    position: relative;
+    overflow-y: auto;
+}
+
+.tmdb-modal-close {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    border: none;
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    font-size: 1.6rem;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.tmdb-modal-body {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 1rem;
+    padding: 1.2rem;
+    color: #eee;
+}
+
+.tmdb-modal-poster {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.tmdb-modal-info h2 {
+    margin: 0;
+    color: #fff;
+    font-size: 1.6rem;
+}
+
+.tmdb-modal-info p {
+    color: #ddd;
+    line-height: 1.5;
+}
+
+.tmdb-trailer-container {
+    margin-top: 0.8rem;
+}
+
+.tmdb-trailer-embed {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+.tmdb-trailer-embed iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 1024px) {
+    .tmdb-modal-body {
+        grid-template-columns: 1fr;
+    }
+
+    .tmdb-modal-poster {
+        height: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    header { padding: 0.5rem 0.8rem; }
+    .sidebar { width: 48px; }
+    main { margin-left: 48px; padding-top: 70px; }
+    .main-nav ul { gap: 0.5rem; font-size: 0.8rem; }
+    .search input { width: 180px; }
+    .hero-carousel { height: 30vh; }
+
+    .movie-card, .card { flex: 0 0 120px; }
+    .movie-card img, .card img { width: 100%; height: 180px; }
+    .content-row { padding: 0 0.5rem; }
+
+    .tmdb-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+    .tmdb-card img { height: 180px; }
+
+    .tmdb-modal-info h2 { font-size: 1.3rem; }
+    .tmdb-modal-poster { height: 200px; }
+}
+
 /* Sports Channels Styles */
 .channels-list {
     max-height: 400px;
@@ -1582,5 +1750,487 @@ main {
     .movie-card .title {
         max-width: 150px;
         font-size: 0.9rem;
+    }
+}
+
+/* ======================================
+   MOVIE DETAILS PAGE STYLES
+   ====================================== */
+
+.details-page {
+    margin-left: 60px;
+    padding-top: 70px;
+    padding-bottom: 3rem;
+}
+
+.details-header {
+    padding: 1rem 2rem;
+}
+
+.back-link {
+    color: #e50914;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.back-link:hover {
+    color: #ff1c2b;
+}
+
+/* Hero section */
+.details-hero {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(2px) brightness(0.4);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 3rem;
+    padding: 3rem 2rem;
+    height: 100%;
+    align-items: flex-start;
+}
+
+.poster-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.poster-image {
+    width: 280px;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.details-info {
+    padding-top: 2rem;
+}
+
+.details-info h1 {
+    font-size: 3rem;
+    margin: 0 0 1rem 0;
+    font-weight: bold;
+    color: #fff;
+}
+
+.meta-info {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.meta-info span {
+    font-size: 1rem;
+    color: #ccc;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.meta-info .year {
+    color: #f7b500;
+    font-weight: bold;
+}
+
+.meta-info .rating {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.meta-info .source {
+    color: #e50914;
+    font-weight: bold;
+}
+
+.description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #ddd;
+    max-width: 600px;
+    margin-bottom: 2rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.play-btn, .add-list-btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.play-btn {
+    background: #e50914;
+    color: #fff;
+}
+
+.play-btn:hover {
+    background: #ff1c2b;
+    transform: scale(1.05);
+}
+
+.add-list-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.add-list-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Episodes section */
+.episodes-section {
+    padding: 0 2rem;
+    margin-top: 3rem;
+}
+
+.episodes-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: #fff;
+}
+
+.episodes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.episode-card {
+    background: #222;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.episode-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 24px rgba(229, 9, 20, 0.3);
+}
+
+.episode-thumbnail {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    overflow: hidden;
+    background: #000;
+}
+
+.episode-thumbnail img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(229, 9, 20, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 2;
+}
+
+.episode-card:hover .play-overlay {
+    opacity: 1;
+}
+
+.episode-info {
+    padding: 1rem;
+}
+
+.episode-info h4 {
+    margin: 0;
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/* Trailer modal */
+.trailer-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    padding: 1rem;
+}
+
+.trailer-modal.active {
+    display: flex;
+}
+
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    height: 90vh;
+    max-height: 700px;
+}
+
+.modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.trailer-container {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.trailer-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.trailer-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Responsive details page */
+@media (max-width: 1024px) {
+    .hero-content {
+        grid-template-columns: 200px 1fr;
+        gap: 2rem;
+        padding: 2rem;
+    }
+    
+    .poster-image {
+        width: 200px;
+        height: 300px;
+    }
+    
+    .details-info h1 {
+        font-size: 2.2rem;
+    }
+    
+    .description {
+        font-size: 1rem;
+    }
+    
+    .episodes-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .details-page {
+        margin-left: 0;
+        padding-top: 60px;
+    }
+    
+    .details-hero {
+        height: auto;
+        padding: 2rem 0;
+    }
+    
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .poster-image {
+        width: 150px;
+        height: 225px;
+        margin: 0 auto;
+    }
+    
+    .details-info h1 {
+        font-size: 1.8rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .meta-info {
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .meta-info span {
+        font-size: 0.9rem;
+    }
+    
+    .description {
+        font-size: 0.95rem;
+        max-width: 100%;
+    }
+    
+    .action-buttons {
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+    
+    .play-btn, .add-list-btn {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .episodes-section {
+        padding: 0 1rem;
+    }
+    
+    .episodes-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .episodes-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 1rem;
+    }
+    
+    .modal-close {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        height: 70vh;
+    }
+}
+
+@media (max-width: 480px) {
+    .details-header {
+        padding: 1rem;
+    }
+    
+    .back-link {
+        font-size: 0.9rem;
+    }
+    
+    .details-hero {
+        margin-bottom: 2rem;
+    }
+    
+    .hero-content {
+        padding: 1rem;
+    }
+    
+    .poster-image {
+        width: 120px;
+        height: 180px;
+    }
+    
+    .details-info h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.6rem;
+    }
+    
+    .meta-info {
+        gap: 0.8rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .meta-info span {
+        font-size: 0.85rem;
+    }
+    
+    .description {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .play-btn, .add-list-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .episodes-section {
+        padding: 0 0.5rem;
+    }
+    
+    .episodes-section h2 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .episodes-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 0.8rem;
     }
 }

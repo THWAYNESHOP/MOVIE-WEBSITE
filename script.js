@@ -1,3 +1,223 @@
+// ================================================
+// MOVIE DATABASE - Shared with details page
+// ================================================
+const movieDatabase = {
+    lulu: {
+        id: 'lulu',
+        title: 'Lulu Tuesday 2nd March',
+        poster: 'lulu.jpg',
+        banner: 'lulu.jpg',
+        year: '2024',
+        rating: '8.5/10',
+        source: 'Maisha Magic Plus',
+        description: 'Lulu is a captivating drama series featuring intense storylines and compelling characters. Each episode brings new twists and exciting developments.',
+        trailerUrl: 'https://www.youtube.com/embed/V_h0cwK0rro?autoplay=1',
+        episodes: [
+            { id: 1, title: 'Lulu 18th March', video: 'https://www.youtube.com/embed/A_r5r6ru6MY?autoplay=1', type: 'youtube' },
+            { id: 2, title: 'Full Episode: Lulu Tuesday 2nd March', video: 'https://www.youtube.com/embed/V_h0cwK0rro?autoplay=1', type: 'youtube' },
+            { id: 3, title: 'Lulu Vimeo (1179822781)', video: 'https://vimeo.com/1179822781?autoplay=1', type: 'vimeo' },
+            { id: 4, title: 'Lulu Tuesday 31st March', video: 'https://vimeo.com/1179843142?autoplay=1', type: 'vimeo' },
+            { id: 5, title: 'Lulu Wednesday 1st April', video: 'https://vimeo.com/1179847512?autoplay=1', type: 'vimeo' },
+            { id: 6, title: 'Lulu 2nd April Thursday', video: 'https://www.youtube.com/embed/3JX06dEkfA0?autoplay=1', type: 'youtube' },
+            { id: 7, title: 'Episode 1: Lulu Thursday', video: 'LULU THUR.mp4', type: 'local' },
+            { id: 8, title: 'Telegram Updates: AYANA CITIZEN TV', video: 'https://t.me/AYANACITIZENTVDAILYUPDATES/321?embed=1&mode=tve', type: 'telegram' }
+        ]
+    },
+    ayana: {
+        id: 'ayana',
+        title: 'Ayana',
+        poster: 'ayana.jpg',
+        banner: 'ayana.jpg',
+        year: '2024',
+        rating: '8.2/10',
+        source: 'Citizen TV',
+        description: 'Ayana is an exciting drama series with compelling narratives and unforgettable characters. Follow the journey as events unfold with unexpected twists.',
+        trailerUrl: 'https://www.youtube.com/embed/UhtUujOfCl8?autoplay=1',
+        episodes: [
+            { id: 1, title: 'Ayana - Permanent Video', video: 'https://www.youtube.com/embed/UhtUujOfCl8?autoplay=1', type: 'youtube' },
+            { id: 2, title: 'Full Movie: Ayana', video: 'https://www.youtube.com/embed/V89rkxV6Y-4?autoplay=1', type: 'youtube' },
+            { id: 3, title: 'Episode 1: Ayana Friday 6th Part 1', video: 'ayana_friday_6th_part_1.mp4', type: 'local' },
+            { id: 4, title: 'Episode 2: Ayana Friday 6th Part 2', video: 'ayana_friday_6th_part_2.mp4', type: 'local' }
+        ]
+    },
+    qutu: {
+        id: 'qutu',
+        title: 'Qutu',
+        poster: 'qutu.jpg',
+        banner: 'qutu.jpg',
+        year: '2024',
+        rating: '7.8/10',
+        source: 'Maisha Magic',
+        description: 'Qutu is an engaging drama providing viewers with thrilling moments and captivating plot developments.',
+        trailerUrl: 'https://www.youtube.com/embed/UhtUujOfCl8?autoplay=1',
+        episodes: [
+            { id: 1, title: 'Qutu - Full Episode', video: 'https://www.youtube.com/embed/UhtUujOfCl8?autoplay=1', type: 'youtube' }
+        ]
+    },
+    lazizi: {
+        id: 'lazizi',
+        title: 'Lazizi',
+        poster: 'lazizi.jpg',
+        banner: 'lazizi.jpg',
+        year: '2024',
+        rating: '7.5/10',
+        source: 'Citizen TV',
+        description: 'Lazizi brings entertaining storytelling with characters that audiences love to follow. A must-watch drama series.',
+        trailerUrl: 'https://www.youtube.com/embed/placeholder?autoplay=1',
+        episodes: [
+            { id: 1, title: 'Episode 1', video: 'https://www.youtube.com/embed/placeholder?autoplay=1', type: 'youtube' }
+        ]
+    },
+    'blood-and-water': {
+        id: 'blood-and-water',
+        title: 'Blood and Water',
+        poster: 'blood and water.jpg',
+        banner: 'blood and water.jpg',
+        year: '2023',
+        rating: '8.0/10',
+        source: 'Netflix',
+        description: 'A thrilling drama series with mystery, suspense, and unforgettable moments.',
+        trailerUrl: 'https://www.youtube.com/embed/placeholder?autoplay=1',
+        episodes: [
+            { id: 1, title: 'Episode 1', video: 'https://www.youtube.com/embed/placeholder?autoplay=1', type: 'youtube' }
+        ]
+    },
+    'double-kara': {
+        id: 'double-kara',
+        title: 'Double Kara',
+        poster: 'double kara.jpg',
+        banner: 'double kara.jpg',
+        year: '2023',
+        rating: '7.9/10',
+        source: 'Maisha Magic',
+        description: 'An engaging romance and drama series with beautiful cinematography and compelling storylines.',
+        trailerUrl: 'https://www.youtube.com/embed/placeholder?autoplay=1',
+        episodes: [
+            { id: 1, title: 'Episode 1', video: 'https://www.youtube.com/embed/placeholder?autoplay=1', type: 'youtube' }
+        ]
+    },
+    'once-again': {
+        id: 'once-again',
+        title: 'Once Again',
+        poster: 'once again.jpg',
+        banner: 'once again.jpg',
+        year: '2023',
+        rating: '8.1/10',
+        source: 'Citizen TV',
+        description: 'A heartwarming and emotionally powerful drama about second chances and life lessons.',
+        trailerUrl: 'https://www.youtube.com/embed/placeholder?autoplay=1',
+        episodes: [
+            { id: 1, title: 'Episode 1', video: 'https://www.youtube.com/embed/placeholder?autoplay=1', type: 'youtube' }
+        ]
+    },
+    kbc: {
+        id: 'kbc',
+        title: 'KBC',
+        poster: 'kbc.jpg',
+        banner: 'kbc.jpg',
+        year: '2024',
+        rating: '8.3/10',
+        source: 'Sony TV',
+        description: 'The exciting quiz show everyone loves. Test your knowledge and compete for amazing prizes.',
+        trailerUrl: 'https://www.youtube.com/embed/placeholder?autoplay=1',
+        episodes: [
+            { id: 1, title: 'Episode 1', video: 'https://www.youtube.com/embed/placeholder?autoplay=1', type: 'youtube' }
+        ]
+    },
+    citizen: {
+        id: 'citizen',
+        title: 'Citizen',
+        poster: 'citizen.jpg',
+        banner: 'citizen.jpg',
+        year: '2024',
+        rating: '8.4/10',
+        source: 'Citizen TV',
+        description: 'Breaking news and current events coverage from Citizen TV. Stay informed with the latest updates.',
+        trailerUrl: 'https://www.youtube.com/embed/placeholder?autoplay=1',
+        episodes: [
+            { id: 1, title: 'Episode 1', video: 'https://www.youtube.com/embed/placeholder?autoplay=1', type: 'youtube' }
+        ]
+    },
+    ktn: {
+        id: 'ktn',
+        title: 'KTN',
+        poster: 'ktn.jpg',
+        banner: 'ktn.jpg',
+        year: '2024',
+        rating: '8.0/10',
+        source: 'KTN',
+        description: 'News and entertainment from KTN, bringing you the best content daily.',
+        trailerUrl: 'https://www.youtube.com/embed/placeholder?autoplay=1',
+        episodes: [
+            { id: 1, title: 'Episode 1', video: 'https://www.youtube.com/embed/placeholder?autoplay=1', type: 'youtube' }
+        ]
+    },
+    maisha: {
+        id: 'maisha',
+        title: 'Maisha',
+        poster: 'maisha.jpg',
+        banner: 'maisha.jpg',
+        year: '2024',
+        rating: '7.7/10',
+        source: 'Maisha Magic',
+        description: 'A drama series about life, love, and relationships. Experience compelling stories that resonate.',
+        trailerUrl: 'https://www.youtube.com/embed/placeholder?autoplay=1',
+        episodes: [
+            { id: 1, title: 'Episode 1', video: 'https://www.youtube.com/embed/placeholder?autoplay=1', type: 'youtube' }
+        ]
+    }
+};
+
+// Helper function to get movie ID from various properties
+function getMovieIdFromElement(element) {
+    const card = element.closest('.movie-card') || element.closest('.card');
+    if (!card) return null;
+    
+    const img = card.querySelector('img');
+    if (!img) return null;
+    
+    const alt = img.alt.toLowerCase().trim();
+    const title = card.querySelector('.title');
+    const cardText = title ? title.textContent.toLowerCase().trim() : '';
+    
+    // Map various names to database IDs
+    const nameMap = {
+        'lulu': 'lulu',
+        'ayana': 'ayana',
+        'qutu': 'qutu',
+        'lazizi': 'lazizi',
+        'blood and water': 'blood-and-water',
+        'double kara': 'double-kara',
+        'once again': 'once-again',
+        'kbc': 'kbc',
+        'citizen': 'citizen',
+        'ktn': 'ktn',
+        'maisha': 'maisha'
+    };
+    
+    // Check alt attribute and title
+    for (const [name, id] of Object.entries(nameMap)) {
+        if (alt.includes(name) || cardText.includes(name)) {
+            return id;
+        }
+    }
+    
+    return null;
+}
+
+// Function to navigate to details page
+function navigateToDetails(movieId) {
+    if (movieId && movieDatabase[movieId]) {
+        const subscriptionRequired = false; // Set to true if you want to require subscription
+        if (subscriptionRequired && !isSubscribed()) {
+            alert('You need to subscribe to view details.');
+            promptSubscription();
+            return;
+        }
+        window.location.href = `movie-details.html?movie=${movieId}`;
+    }
+}
+
 // carousel controls
 const slides = document.querySelectorAll('.hero-carousel .slide');
 let currentSlide = 0;
@@ -233,375 +453,49 @@ sections.forEach(id => {
             <div class="add-list">+My List</div>
         `;
         card.addEventListener('click', () => {
-            requireSubscription(() => {
-                window.location.href = 'video.html';
-            });
+            const movieId = getMovieIdFromElement(card);
+            if (movieId) {
+                navigateToDetails(movieId);
+            } else {
+                requireSubscription(() => {
+                    window.location.href = 'video.html';
+                });
+            }
         });
         row.appendChild(card);
     }
 });
 
-// toggle for all ayana cards: img <-> episodes <-> video player (Netflix style)
-console.log('Initializing Ayana/Lulu cards...');
+// Toggle for all movie cards: navigate to details page
+console.log('Initializing movie cards with details page navigation...');
 const ayanaCards = document.querySelectorAll('.movie-card');
 console.log('Found movie cards:', ayanaCards.length);
 ayanaCards.forEach(ayanaCard => {
     const cardWrapper = ayanaCard.querySelector('.card-wrapper');
     const episodesPanel = ayanaCard.querySelector('.episodes-panel');
-    const videoPlayer = ayanaCard.querySelector('.video-player');
-    const episodeBtns = ayanaCard.querySelectorAll('.episode-btn');
-    const backBtn = ayanaCard.querySelector('.back-btn');
-    const episodesBackBtn = ayanaCard.querySelector('.episodes-back-btn');
-    const video = ayanaCard.querySelector('.episode-video');
+    const img = ayanaCard.querySelector('img');
 
-    console.log('Card found - episodesPanel:', !!episodesPanel, 'episodeBtns:', episodeBtns.length);
+    console.log('Card found - has episodes:', !!episodesPanel);
 
-    if (!episodesPanel) return; // skip if not a card with episodes
+    // Click on card image navigates to details page
+    if (img) {
+        img.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const movieId = getMovieIdFromElement(ayanaCard);
+            if (movieId) {
+                navigateToDetails(movieId);
+            }
+        });
+    }
 
-    // click on card image to open episodes
-    if (cardWrapper) {
+    // If card wrapper exists and card has episodes panel, replace click behavior
+    if (cardWrapper && episodesPanel) {
         cardWrapper.addEventListener('click', (e) => {
-            if (cardWrapper.style.display !== 'none') {
-                cardWrapper.style.display = 'none';
-                episodesPanel.style.display = 'block';
-            }
-        });
-        
-        // Add direct click on poster image to play video
-        const posterImg = cardWrapper.querySelector('img');
-        if (posterImg) {
-            posterImg.addEventListener('click', (e) => {
+            const movieId = getMovieIdFromElement(ayanaCard);
+            if (movieId) {
+                e.preventDefault();
                 e.stopPropagation();
-                
-                // Find the first YouTube video button and click it
-                const firstYouTubeBtn = Array.from(episodeBtns).find(btn => 
-                    btn.getAttribute('data-video').includes('youtube.com/embed')
-                );
-                
-                if (firstYouTubeBtn) {
-                    firstYouTubeBtn.click();
-                }
-            });
-        }
-    }
-
-    // episode button click to play video
-    episodeBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            console.log('Episode button clicked:', btn.getAttribute('data-video'), btn.getAttribute('data-telegram'));
-            
-            // Check if it's a Telegram widget button
-            if (btn.getAttribute('data-telegram') === 'true') {
-                console.log('Loading Telegram video content...');
-                
-                // Show loading state
-                const playerContainer = ayanaCard.querySelector('.video-player');
-                playerContainer.innerHTML = `
-                    <div class="loading-spinner">
-                        <div class="spinner"></div>
-                        <p>Loading Telegram video...</p>
-                    </div>
-                    <button class="back-btn">← Back</button>
-                `;
-                
-                // Load Telegram video content directly
-                setTimeout(() => {
-                    // Create a video player that will display Telegram content
-                    playerContainer.innerHTML = `
-                        <div class="video-wrapper">
-                            <iframe 
-                                src="https://t.me/AYANACITIZENTVDAILYUPDATES/321?embed=1&mode=tve" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen
-                                style="width: 100%; height: 500px; border-radius: 8px;">
-                            </iframe>
-                        </div>
-                        <button class="back-btn">← Back</button>
-                        <div class="video-controls">
-                            <button class="fullscreen-btn">⛶ Fullscreen</button>
-                        </div>
-                    `;
-                    
-                    // Add fullscreen functionality
-                    const fullscreenBtn = playerContainer.querySelector('.fullscreen-btn');
-                    if (fullscreenBtn) {
-                        fullscreenBtn.addEventListener('click', () => {
-                            const iframe = playerContainer.querySelector('iframe');
-                            if (iframe.requestFullscreen) {
-                                iframe.requestFullscreen();
-                            } else if (iframe.webkitRequestFullscreen) {
-                                iframe.webkitRequestFullscreen();
-                            } else if (iframe.msRequestFullscreen) {
-                                iframe.msRequestFullscreen();
-                            }
-                        });
-                    }
-                    
-                    // Re-attach back button event
-                    const backBtn = playerContainer.querySelector('.back-btn');
-                    if (backBtn) {
-                        backBtn.addEventListener('click', () => {
-                            videoPlayer.style.display = 'none';
-                            episodesPanel.style.display = 'block';
-                        });
-                    }
-                }, 1000);
-                
-                // Hide episodes panel and show video player
-                episodesPanel.style.display = 'none';
-                videoPlayer.style.display = 'block';
-                console.log('Telegram video loaded, showing video player');
-                return;
-            }
-            
-            const src = btn.getAttribute('data-video');
-            console.log('Loading video:', src);
-            const video = ayanaCard.querySelector('.episode-video');
-            
-            console.log('Video element found:', !!video);
-            console.log('Video player container:', !!ayanaCard.querySelector('.video-player'));
-            console.log('Is YouTube URL:', src.includes('youtube.com/embed') || src.includes('youtu.be/') || src.includes('youtube.com/watch?v='));
-            
-            // Show loading state
-            const playerContainer = ayanaCard.querySelector('.video-player');
-            playerContainer.innerHTML = `
-                <div class="loading-spinner">
-                    <div class="spinner"></div>
-                    <p>Loading video...</p>
-                </div>
-                <button class="back-btn">← Back</button>
-            `;
-            
-            // Check if it's a YouTube URL
-            if (src.includes('youtube.com/embed/') || src.includes('youtu.be/') || src.includes('youtube.com/watch?v=')) {
-                // Extract video ID from different YouTube URL formats
-                let videoId = '';
-                if (src.includes('youtube.com/embed/')) {
-                    videoId = src.split('youtube.com/embed/')[1].split('?')[0];
-                } else if (src.includes('youtu.be/')) {
-                    videoId = src.split('youtu.be/')[1].split('?')[0];
-                } else if (src.includes('youtube.com/watch?v=')) {
-                    videoId = src.split('v=')[1].split('&')[0];
-                }
-                
-                const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
-                
-                // Show loading state
-                const playerContainer = ayanaCard.querySelector('.video-player');
-                playerContainer.innerHTML = `
-                    <div class="loading-spinner">
-                        <div class="spinner"></div>
-                        <p>Loading video...</p>
-                    </div>
-                    <button class="back-btn">← Back</button>
-                `;
-                
-                // Create iframe for YouTube video
-                setTimeout(() => {
-                    playerContainer.innerHTML = `
-                        <div class="video-wrapper">
-                            <iframe class="video-iframe" 
-                                    src="${embedUrl}" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                            </iframe>
-                        </div>
-                        <button class="back-btn">← Back</button>
-                        <div class="video-controls">
-                            <button class="fullscreen-btn">⛶ Fullscreen</button>
-                        </div>
-                    `;
-                    
-                    // Add fullscreen functionality
-                    const fullscreenBtn = playerContainer.querySelector('.fullscreen-btn');
-                    if (fullscreenBtn) {
-                        fullscreenBtn.addEventListener('click', () => {
-                            const iframe = playerContainer.querySelector('.video-iframe');
-                            if (iframe.requestFullscreen) {
-                                iframe.requestFullscreen();
-                            } else if (iframe.webkitRequestFullscreen) {
-                                iframe.webkitRequestFullscreen();
-                            } else if (iframe.msRequestFullscreen) {
-                                iframe.msRequestFullscreen();
-                            }
-                        });
-                    }
-                    
-                    // Re-attach back button event
-                    const backBtn = playerContainer.querySelector('.back-btn');
-                    if (backBtn) {
-                        backBtn.addEventListener('click', () => {
-                            videoPlayer.style.display = 'none';
-                            episodesPanel.style.display = 'block';
-                            if (newVideo) {
-                                newVideo.pause();
-                                newVideo.currentTime = 0;
-                            }
-                        });
-                    }
-                }, 1000);
-            } else if (src.includes('vimeo.com')) {
-                // Extract Vimeo ID from common URL patterns
-                const match = src.match(/vimeo\.com\/(?:video\/)?(\d+)/);
-                const vimeoId = match ? match[1] : null;
-                const embedUrl = vimeoId ? `https://player.vimeo.com/video/${vimeoId}?autoplay=1&title=0&byline=0&portrait=0` : src;
-
-                const playerContainer = ayanaCard.querySelector('.video-player');
-                playerContainer.innerHTML = `
-                    <div class="loading-spinner">
-                        <div class="spinner"></div>
-                        <p>Loading Vimeo video...</p>
-                    </div>
-                    <button class="back-btn">← Back</button>
-                `;
-
-                setTimeout(() => {
-                    playerContainer.innerHTML = `
-                        <div class="video-wrapper">
-                            <iframe class="video-iframe" 
-                                    src="${embedUrl}" 
-                                    frameborder="0" 
-                                    allow="autoplay; fullscreen; picture-in-picture" 
-                                    allowfullscreen>
-                            </iframe>
-                        </div>
-                        <button class="back-btn">← Back</button>
-                        <div class="video-controls">
-                            <button class="fullscreen-btn">⛶ Fullscreen</button>
-                        </div>
-                    `;
-
-                    const fullscreenBtn = playerContainer.querySelector('.fullscreen-btn');
-                    if (fullscreenBtn) {
-                        fullscreenBtn.addEventListener('click', () => {
-                            const iframe = playerContainer.querySelector('.video-iframe');
-                            if (iframe.requestFullscreen) {
-                                iframe.requestFullscreen();
-                            } else if (iframe.webkitRequestFullscreen) {
-                                iframe.webkitRequestFullscreen();
-                            } else if (iframe.msRequestFullscreen) {
-                                iframe.msRequestFullscreen();
-                            }
-                        });
-                    }
-
-                    const backBtn = playerContainer.querySelector('.back-btn');
-                    if (backBtn) {
-                        backBtn.addEventListener('click', () => {
-                            videoPlayer.style.display = 'none';
-                            episodesPanel.style.display = 'block';
-                        });
-                    }
-                }, 1000);
-            } else {
-                // Handle local video files
-                const newVideo = document.createElement('video');
-                newVideo.className = 'episode-video';
-                newVideo.poster = ayanaCard.querySelector('.card-wrapper img').src;
-                newVideo.controls = true;
-                newVideo.preload = 'auto';
-                newVideo.src = src;
-                
-                // Show loading state
-                const playerContainer = ayanaCard.querySelector('.video-player');
-                playerContainer.innerHTML = `
-                    <div class="loading-spinner">
-                        <div class="spinner"></div>
-                        <p>Loading video...</p>
-                    </div>
-                    <button class="back-btn">← Back</button>
-                `;
-                
-                setTimeout(() => {
-                    playerContainer.innerHTML = '';
-                    playerContainer.appendChild(newVideo);
-                    playerContainer.innerHTML += `
-                        <button class="back-btn">← Back</button>
-                        <div class="video-controls">
-                            <button class="speed-btn">⚡ 1x</button>
-                            <button class="fullscreen-btn">⛶ Fullscreen</button>
-                        </div>
-                    `;
-                    
-                    newVideo.play();
-                    
-                    // Add speed control
-                    const speedBtn = playerContainer.querySelector('.speed-btn');
-                    if (speedBtn) {
-                        const speeds = [1, 1.25, 1.5, 2];
-                        let currentSpeed = 1;
-                        
-                        speedBtn.addEventListener('click', () => {
-                            const currentIndex = speeds.indexOf(currentSpeed);
-                            const nextIndex = (currentIndex + 1) % speeds.length;
-                            newVideo.playbackRate = speeds[nextIndex];
-                            speedBtn.textContent = `⚡ ${speeds[nextIndex]}x`;
-                        });
-                    }
-                    
-                    // Add fullscreen functionality
-                    const fullscreenBtn = playerContainer.querySelector('.fullscreen-btn');
-                    if (fullscreenBtn) {
-                        fullscreenBtn.addEventListener('click', () => {
-                            if (newVideo.requestFullscreen) {
-                                newVideo.requestFullscreen();
-                            } else if (newVideo.webkitRequestFullscreen) {
-                                newVideo.webkitRequestFullscreen();
-                            } else if (newVideo.msRequestFullscreen) {
-                                newVideo.msRequestFullscreen();
-                            }
-                        });
-                    }
-                    
-                    // Re-attach back button event
-                    const backBtn = playerContainer.querySelector('.back-btn');
-                    if (backBtn) {
-                        backBtn.addEventListener('click', () => {
-                            videoPlayer.style.display = 'none';
-                            episodesPanel.style.display = 'block';
-                            if (newVideo) {
-                                newVideo.pause();
-                                newVideo.currentTime = 0;
-                            }
-                        });
-                    }
-                }, 1000);
-            }
-            
-            episodesPanel.style.display = 'none';
-            videoPlayer.style.display = 'block';
-        });
-    });
-
-    // back button from video player to episodes
-    if (backBtn) {
-        backBtn.addEventListener('click', () => {
-            videoPlayer.style.display = 'none';
-            episodesPanel.style.display = 'block';
-            video.pause();
-            video.currentTime = 0;
-        });
-    }
-
-    // back button from episodes to card image
-    if (episodesBackBtn) {
-        episodesBackBtn.addEventListener('click', () => {
-            episodesPanel.style.display = 'none';
-            cardWrapper.style.display = 'block';
-            video.pause();
-            video.currentTime = 0;
-        });
-    }
-
-    // optional: click outer video area to go back
-    if (videoPlayer) {
-        videoPlayer.addEventListener('click', (e) => {
-            if (e.target === videoPlayer) {
-                videoPlayer.style.display = 'none';
-                episodesPanel.style.display = 'block';
-                video.pause();
+                navigateToDetails(movieId);
             }
         });
     }
@@ -645,9 +539,136 @@ searchInput.addEventListener('keypress', (e) => {
     }
 });
 
+// TMDB Trending Integration (NEW)
+const TMDB_API_KEY = 'YOUR_TMDB_API_KEY'; // <--- Replace with your TMDB API key
+const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
+const TMDB_IMAGE_BASE = 'https://image.tmdb.org/t/p/w500';
+
+async function fetchTrendingMovies() {
+    const grid = document.getElementById('tmdb-trending-grid');
+    if (!grid) return;
+
+    grid.innerHTML = '<p>Loading trending movies from TMDB...</p>';
+
+    if (!TMDB_API_KEY || TMDB_API_KEY === 'YOUR_TMDB_API_KEY') {
+        grid.innerHTML = '<p style="color: #f7b500;">TMDB API key not set. Add it in <code>script.js</code>.</p>';
+        return;
+    }
+
+    try {
+        const response = await fetch(`${TMDB_BASE_URL}/trending/movie/week?api_key=${TMDB_API_KEY}`);
+        if (!response.ok) throw new Error('TMDB request failed: ' + response.status);
+        const data = await response.json();
+
+        if (!data.results || data.results.length === 0) {
+            grid.innerHTML = '<p>No trending movies found.</p>';
+            return;
+        }
+
+        grid.innerHTML = '';
+
+        data.results.forEach(movie => {
+            const card = document.createElement('div');
+            card.className = 'tmdb-card';
+            const posterPath = movie.poster_path ? `${TMDB_IMAGE_BASE}${movie.poster_path}` : 'placeholder.jpg';
+            card.innerHTML = `
+                <img src="${posterPath}" alt="${movie.title}" loading="lazy">
+                <div class="tmdb-card-info">
+                    <h4>${movie.title}</h4>
+                    <span>⭐ ${movie.vote_average.toFixed(1)}</span>
+                </div>
+            `;
+
+            card.addEventListener('click', () => {
+                openTmdbModal(movie);
+            });
+
+            grid.appendChild(card);
+        });
+    } catch (error) {
+        console.error(error);
+        grid.innerHTML = `<p style="color: #ff6666;">Failed to load TMDB trending content. ${error.message}</p>`;
+    }
+}
+
+async function fetchMovieTrailer(movieId) {
+    if (!TMDB_API_KEY || TMDB_API_KEY === 'YOUR_TMDB_API_KEY') return null;
+
+    try {
+        const response = await fetch(`${TMDB_BASE_URL}/movie/${movieId}/videos?api_key=${TMDB_API_KEY}`);
+        if (!response.ok) return null;
+        const data = await response.json();
+        const trailer = data.results.find(v => v.site === 'YouTube' && v.type.toLowerCase().includes('trailer'));
+        return trailer ? trailer.key : null;
+    } catch (error) {
+        console.error('Error fetching trailer:', error);
+        return null;
+    }
+}
+
+async function openTmdbModal(movie) {
+    const modal = document.getElementById('tmdbModal');
+    const poster = document.getElementById('tmdbModalPoster');
+    const title = document.getElementById('tmdbModalTitle');
+    const overview = document.getElementById('tmdbModalOverview');
+    const rating = document.getElementById('tmdbModalRating');
+    const trailerContainer = document.getElementById('tmdbTrailerContainer');
+
+    if (!modal || !poster || !title || !overview || !rating || !trailerContainer) return;
+
+    poster.src = movie.poster_path ? `${TMDB_IMAGE_BASE}${movie.poster_path}` : 'placeholder.jpg';
+    poster.alt = movie.title;
+    title.textContent = movie.title;
+    overview.textContent = movie.overview || 'No overview available.';
+    rating.textContent = `${movie.vote_average.toFixed(1)} / 10`;
+    trailerContainer.innerHTML = '<p>Loading trailer...</p>';
+
+    const trailerKey = await fetchMovieTrailer(movie.id);
+    if (trailerKey) {
+        trailerContainer.innerHTML = `
+            <div class="tmdb-trailer-embed">
+                <iframe src="https://www.youtube.com/embed/${trailerKey}?autoplay=1&controls=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        `;
+    } else {
+        trailerContainer.innerHTML = '<p>No official trailer found. Try another movie.</p>';
+    }
+
+    modal.classList.remove('hidden');
+}
+
+function closeTmdbModal() {
+    const modal = document.getElementById('tmdbModal');
+    if (!modal) return;
+    const trailerIframe = modal.querySelector('iframe');
+    if (trailerIframe) trailerIframe.src = '';
+    modal.classList.add('hidden');
+}
+
+const closeBtn = document.getElementById('tmdbModalClose');
+if (closeBtn) closeBtn.addEventListener('click', closeTmdbModal);
+
+const tmdbRefresh = document.getElementById('tmdb-refresh');
+if (tmdbRefresh) {
+    tmdbRefresh.addEventListener('click', (event) => {
+        event.preventDefault();
+        fetchTrendingMovies();
+    });
+}
+
+const tmdbModal = document.getElementById('tmdbModal');
+if (tmdbModal) {
+    tmdbModal.addEventListener('click', (event) => {
+        if (event.target === tmdbModal) {
+            closeTmdbModal();
+        }
+    });
+}
+
+fetchTrendingMovies();
+
 // Lulu 18th March 24-hour auto-hide functionality
-const lulu18thMarch = {
-    videoId: 'A_r5r6ru6MY',
+const lulu18thMarch = {    videoId: 'A_r5r6ru6MY',
     title: 'Lulu 18th March',
     addedTime: new Date().getTime(),
     duration: 24 * 60 * 60 * 1000 // 24 hours in milliseconds
