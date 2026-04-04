@@ -178,7 +178,7 @@ const movieDatabase = {
         description: 'Shuga is a groundbreaking youth drama series that tackles real-life issues faced by young people in Africa, including relationships, sexuality, HIV/AIDS, and social pressures.',
         trailerUrl: 'https://www.youtube.com/embed/placeholder?autoplay=1',
         episodes: [
-            { id: 1, title: 'Shuga Season 1 Episode 1', video: 'https://www.youtube.com/embed/suapN_w1BA0?autoplay=1', type: 'youtube' }
+            { id: 1, title: 'Shuga Season 1 Episode 1', video: 'https://www.youtube.com/embed/suapN_w1BA0', type: 'youtube' }
         ]
     }
     // Add more movies as needed
@@ -301,7 +301,7 @@ function playEpisode(episode) {
         } else if (episode.video.includes('youtube.com/watch?v=')) {
             videoId = episode.video.split('v=')[1].split('&')[0];
         }
-        const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+        const embedUrl = `https://www.youtube.com/embed/${videoId}`;
         container.innerHTML = `<iframe src="${embedUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
     } else if (episode.type === 'vimeo') {
         const match = episode.video.match(/vimeo\.com\/(?:video\/)?(\d+)/);
