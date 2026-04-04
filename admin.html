@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Upload - Patrick Cinema TV</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .success {
+            color: green;
+            margin-top: 10px;
+        }
+        .movie-list {
+            margin-top: 30px;
+        }
+        .movie-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Upload Movie</h2>
+
+<form id="uploadForm">
+    <div class="form-group">
+        <label for="title">Movie Title:</label>
+        <input type="text" id="title" name="title" required>
+    </div>
+
+    <div class="form-group">
+        <label for="poster">Poster:</label>
+        <input type="file" id="poster" name="poster" accept="image/*" required>
+    </div>
+
+    <div class="form-group">
+        <label for="videoUrl">Video URL (YouTube, Google Drive, etc.):</label>
+        <input type="url" id="videoUrl" name="videoUrl" placeholder="https://youtube.com/watch?v=..." required>
+        <small>Examples: https://youtube.com/watch?v=abcd1234 or https://youtu.be/abcd1234</small>
+        <br><br>
+        <small>Or upload video file (max 25MB):</small>
+        <input type="file" id="videoFile" name="videoFile" accept="video/*">
+    </div>
+
+    <button type="submit">Upload</button>
+</form>
+
+<div id="message"></div>
+
+<div class="movie-list">
+    <h3>Uploaded Movies</h3>
+    <div id="moviesList"></div>
+</div>
+
+<script>
+// Load existing movies from localStorage
+let movies = JSON.parse(localStorage.getItem('movies') || '[]');
+
+// Display existing movies
+function displayMovies() {
+    const moviesList = document.getElementById('moviesList');
+    moviesList.innerHTML = movies.map((movie, index) => `
+        <div class="movie-item">
+            <strong>${movie.title}</strong><br>
+            <small>Poster: ${movie.posterName}</small><br>
+            <small>Video: ${movie.videoName}</small><br>
+            <button onclick="deleteMovie(${index})" style="background-color: #dc3545; margin-top: 5px;">Delete</button>
+        </div>
+    `).join('');
+}
+
+// Delete movie
+function deleteMovie(index) {
+    movies.splice(index, 1);
+    localStorage.setItem('movies', JSON.stringify(movies));
+    displayMovies();
+    showMessage('Movie deleted', 'success');
+}
+
+// Show message
+function showMessage(msg, type) {
+    const messageDiv = document.getElementById('message');
+    messageDiv.innerHTML = `<div class="${type}">${msg}</div>`;
+    setTimeout(() => messageDiv.innerHTML = '', 3000);
+}
+
+// Handle form submission
+document.getElementById("uploadForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const title = document.getElementById('title').value;
+    const posterFile = document.getElementById('poster').files[0];
+    const videoUrl = document.getElementById('videoUrl').value;
+    const videoFile = document.getElementById('videoFile').files[0];
+
+    if (!posterFile) {
+        showMessage('Please select a poster image', 'error');
+        return;
+    }
+
+    if (!videoUrl && !videoFile) {
+        showMessage('Please provide either a video URL or upload a video file', 'error');
+        return;
+    }
+
+    // Validate poster file type
+    if (!posterFile.type.startsWith('image/')) {
+        showMessage('Please select a valid image file for poster', 'error');
+        return;
+    }
+
+    // Validate video file type if uploaded
+    if (videoFile && !videoFile.type.startsWith('video/')) {
+        showMessage('Please select a valid video file', 'error');
+        return;
+    }
+
+    // Check video file size if uploaded
+    if (videoFile && videoFile.size > 25 * 1024 * 1024) {
+        showMessage('Video file must be under 25MB for GitHub upload', 'error');
+        return;
+    }
+
+    // Create movie object
+    const movie = {
+        title: title,
+        posterName: posterFile.name,
+        videoName: videoUrl ? videoUrl : videoFile.name,
+        posterType: posterFile.type,
+        videoType: videoFile ? videoFile.type : 'url',
+        posterUrl: URL.createObjectURL(posterFile),
+        videoUrl: videoUrl || URL.createObjectURL(videoFile),
+        uploadDate: new Date().toISOString()
+    };
+
+    console.log('Created movie object:', movie);
+
+    // Save to localStorage
+    movies.push(movie);
+    localStorage.setItem('movies', JSON.stringify(movies));
+
+    // Clear form
+    document.getElementById('uploadForm').reset();
+    
+    // Display success message and update list
+    showMessage('Movie uploaded successfully! 🎬', 'success');
+    displayMovies();
+    
+    // Trigger storage event for other tabs
+    window.dispatchEvent(new Event('storage'));
+});
+
+// Initial display
+displayMovies();
+</script>
+
+</body>
+</html>
