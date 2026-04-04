@@ -66,7 +66,7 @@ const movieDatabase = {
         description: 'Lazizi brings entertaining storytelling with characters that audiences love to follow. A must-watch drama series.',
         trailerUrl: 'https://www.youtube.com/embed/placeholder?autoplay=1',
         episodes: [
-            { id: 1, title: 'Episode 1', video: 'https://www.youtube.com/embed/placeholder', type: 'youtube' }
+            { id: 1, title: 'Lazizi 3rd April Friday', video: 'https://www.youtube.com/embed/7yiAH831HQQ', type: 'youtube' }
         ]
     },
     'blood-and-water': {
