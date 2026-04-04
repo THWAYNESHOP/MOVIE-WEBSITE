@@ -186,6 +186,7 @@ function getMovieIdFromElement(element) {
         'ayana': 'ayana',
         'qutu': 'qutu',
         'lazizi': 'lazizi',
+        'shuga': 'shuga',
         'blood and water': 'blood-and-water',
         'double kara': 'double-kara',
         'once again': 'once-again',
