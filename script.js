@@ -11,7 +11,7 @@ const movieDatabase = {
         rating: '8.5/10',
         source: 'Maisha Magic Plus',
         description: 'Lulu is a captivating drama series featuring intense storylines and compelling characters. Each episode brings new twists and exciting developments.',
-        trailerUrl: 'https://www.youtube.com/embed/V_h0cwK0rro?autoplay=1',
+        trailerUrl: 'https://www.youtube.com/embed/-Im-CnxHSLM?autoplay=1',
         episodes: [
             { id: 1, title: 'Lulu 18th March', video: 'https://www.youtube.com/embed/A_r5r6ru6MY?autoplay=1', type: 'youtube' },
             { id: 2, title: 'Full Episode: Lulu Tuesday 2nd March', video: 'https://www.youtube.com/embed/V_h0cwK0rro?autoplay=1', type: 'youtube' },

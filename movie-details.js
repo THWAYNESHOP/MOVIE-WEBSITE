@@ -9,7 +9,7 @@ const movieDatabase = {
         rating: '8.5/10',
         source: 'Maisha Magic Plus',
         description: 'Lulu is a captivating drama series featuring intense storylines and compelling characters. Each episode brings new twists and exciting developments.',
-        trailerUrl: 'https://www.youtube.com/embed/V_h0cwK0rro?autoplay=1',
+        trailerUrl: 'https://www.youtube.com/embed/-Im-CnxHSLM?autoplay=1',
         episodes: [
             { id: 1, title: 'Lulu 18th March', video: 'https://www.youtube.com/embed/A_r5r6ru6MY?autoplay=1', type: 'youtube' },
             { id: 2, title: 'Full Episode: Lulu Tuesday 2nd March', video: 'https://www.youtube.com/embed/V_h0cwK0rro?autoplay=1', type: 'youtube' },
@@ -31,7 +31,7 @@ const movieDatabase = {
         rating: '8.2/10',
         source: 'Citizen TV',
         description: 'Ayana is an exciting drama series with compelling narratives and unforgettable characters. Follow the journey as events unfold with unexpected twists.',
-        trailerUrl: 'https://www.youtube.com/embed/UhtUujOfCl8?autoplay=1',
+        trailerUrl: 'https://www.youtube.com/embed/YtpmUgjK9ww?autoplay=1',
         episodes: [
             { id: 1, title: 'Ayana - Permanent Video', video: 'https://www.youtube.com/embed/UhtUujOfCl8?autoplay=1', type: 'youtube' },
             { id: 2, title: 'Full Movie: Ayana', video: 'https://www.youtube.com/embed/V89rkxV6Y-4?autoplay=1', type: 'youtube' },
@@ -50,7 +50,7 @@ const movieDatabase = {
         rating: '7.8/10',
         source: 'Maisha Magic',
         description: 'Qutu is an engaging drama providing viewers with thrilling moments and captivating plot developments.',
-        trailerUrl: 'https://www.youtube.com/embed/UhtUujOfCl8?autoplay=1',
+        trailerUrl: 'https://www.youtube.com/embed/yLQ7sAoIPBM?autoplay=1',
         episodes: [
             { id: 1, title: 'Qutu Tuesday', video: 'https://www.youtube.com/embed/Mg3KGotVius', type: 'youtube' }
         ]
@@ -64,7 +64,7 @@ const movieDatabase = {
         rating: '7.5/10',
         source: 'Citizen TV',
         description: 'Lazizi brings entertaining storytelling with characters that audiences love to follow. A must-watch drama series.',
-        trailerUrl: 'https://www.youtube.com/embed/placeholder?autoplay=1',
+        trailerUrl: 'https://www.youtube.com/embed/nTOTP9kqCU4?autoplay=1',
         episodes: [
             { id: 1, title: 'Lazizi 3rd April Friday', video: 'https://www.youtube.com/embed/7yiAH831HQQ', type: 'youtube' }
         ]
