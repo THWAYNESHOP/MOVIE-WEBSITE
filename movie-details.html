@@ -7,6 +7,31 @@
     <title>Movie Details - Patrick Cinema TV</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    
+    <!-- Firebase SDK (CDN) -->
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>
+    
+    <!-- Initialize Firebase -->
+    <script>
+      // Your Firebase config
+      const firebaseConfig = {
+        apiKey: "AIzaSyDCqpIC-YMWMNP_Bjdfhb5lmJDde0dBbqk",
+        authDomain: "movie-website-24502.firebaseapp.com",
+        projectId: "movie-website-24502",
+        storageBucket: "movie-website-24502.firebasestorage.app",
+        messagingSenderId: "786613840105",
+        appId: "1:786613840105:web:1e484884495d2deeb32878",
+        measurementId: "G-4MLBG7YKJJ"
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      const analytics = firebase.analytics();
+    </script>
 </head>
 <body>
     <header>
@@ -138,6 +163,7 @@
         </div>
     </footer>
 
+    <script src="firebase-init.js"></script>
     <script src="movie-details.js"></script>
 </body>
 </html>

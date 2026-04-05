@@ -5,18 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Watch - Patrick Cinema TV</title>
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Firebase SDK (CDN) -->
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js"></script>
+    
+    <!-- Initialize Firebase -->
+    <script>
+      // Your Firebase config
+      const firebaseConfig = {
+        apiKey: "AIzaSyDCqpIC-YMWMNP_Bjdfhb5lmJDde0dBbqk",
+        authDomain: "movie-website-24502.firebaseapp.com",
+        projectId: "movie-website-24502",
+        storageBucket: "movie-website-24502.firebasestorage.app",
+        messagingSenderId: "786613840105",
+        appId: "1:786613840105:web:1e484884495d2deeb32878",
+        measurementId: "G-4MLBG7YKJJ"
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      const analytics = firebase.analytics();
+    </script>
 </head>
 <body>
     <header>
         <div class="logo">Patrick Cinema TV</div>
     </header>
-    <main class="video-player-page">
-        <video controls width="100%" poster="player-poster.jpg">
-            <source src="sample.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <h2>Movie Title</h2>
-        <p>Description of the movie or episode goes here.</p>
-    </main>
+    
+    <!-- Video Section (Protected - Hidden by default) -->
+    <div id="video-section" style="display:none;">
+        <main class="video-player-page">
+            <div class="video-header">
+                <a href="index.html" class="back-link">← Back to Home</a>
+                <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+            </div>
+            
+            <video id="my-video" controls width="100%" poster="player-poster.jpg">
+                <source src="sample.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            
+            <div class="video-info">
+                <h2>Movie Title</h2>
+                <p>Description of the movie or episode goes here.</p>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Login Section (Shows by default) -->
+    <div id="login-section">
+        <div class="login-container">
+            <h1>Patrick Cinema TV</h1>
+            <h2>Sign In to Watch</h2>
+            
+            <form onsubmit="login(event)">
+                <input 
+                    type="email" 
+                    id="email" 
+                    placeholder="Email address"
+                    required
+                    autocomplete="email"
+                >
+                <input 
+                    type="password" 
+                    id="password" 
+                    placeholder="Password"
+                    required
+                    autocomplete="current-password"
+                >
+                <button type="submit">Login</button>
+                
+                <div id="loginError" class="error-message"></div>
+                <div id="loadingSpinner" class="loading-spinner" style="display:none;">
+                    ⏳ Logging in...
+                </div>
+            </form>
+            
+            <p class="signup-link">
+                Don't have an account? <a href="login.html">Sign up here</a>
+            </p>
+            
+            <div class="divider"></div>
+            
+            <p class="demo-text">
+                Demo: Use any email and password to test<br>
+                (Or create an account at Sign up)
+            </p>
+        </div>
+    </div>
+    
+    <script src="firebase-init.js"></script>
+    <script src="video-auth.js"></script>
 </body>
 </html>
